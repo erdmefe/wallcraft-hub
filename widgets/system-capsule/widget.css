@@ -1,0 +1,29 @@
+.sys-pill-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  padding: 6px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+}
+.sys-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+.sys-pill-label {
+  font-weight: 700;
+  color: #94a3b8;
+  font-size: 9.5px;
+}
+.sys-pill-val {
+  font-weight: 700;
+  color: #f8fafc;
+}
+.sys-pill-sep {
+  color: rgba(255,255,255,0.2);
+}
