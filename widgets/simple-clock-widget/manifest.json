@@ -1,0 +1,35 @@
+{
+  "id": "com.erdmefe.simple-clock",
+  "name": "Simple Clock",
+  "version": "1.0.0",
+  "author": "Erdem Efe",
+  "description": "Minimal ve responsive dijital saat widget'ı.",
+  "builtIn": false,
+  "entry": {
+    "html": "widget.html",
+    "script": "widget.js",
+    "css": "widget.css"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 3
+  },
+  "defaultPosition": {
+    "x": 50.0,
+    "y": 50.0
+  },
+  "configSchema": [
+    {
+      "key": "showSeconds",
+      "label": "Saniyeyi Göster",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "use24Hour",
+      "label": "24 Saat Formatı",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}
