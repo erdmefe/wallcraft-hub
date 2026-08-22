@@ -1,0 +1,35 @@
+name: Build Community Catalog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'shaders/**'
+      - 'widgets/**'
+      - 'scripts/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Compile Master Catalog JSON
+        run: node scripts/build-catalog.js
+
+      - name: Commit and Push Updated Catalog
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-build master catalog.json [skip ci]"
+          file_pattern: "catalog.json"
