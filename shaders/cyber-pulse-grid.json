@@ -1,0 +1,26 @@
+{
+  "id": "cyber-pulse-grid",
+  "type": "shader",
+  "title": "Cybernetic Pulse Wave",
+  "author": "VaporBytes",
+  "version": "1.0.0",
+  "desc": "Futuristic neon purple and cyan audio-reactive wireframe terrain undulating in 3D perspective.",
+  "category": "cyberpunk",
+  "categoryLabel": "Cyberpunk",
+  "previewGradient": "linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #020617 100%)",
+  "downloads": 15600,
+  "stars": 230,
+  "rating": 4.9,
+  "tags": ["cyberpunk", "audio", "grid"],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "speed": 1.2,
+    "intensity": 1.15,
+    "color1": "#090014",
+    "color2": "#c084fc",
+    "accentColor": "#22d3ee",
+    "isMultiPass": false,
+    "code": "void mainImage(out vec4 fragColor, in vec2 fragCoord) {\n  vec2 uv = (fragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed;\n  vec3 col = u_color1;\n  if (uv.y < 0.1) {\n    float depth = -0.3 / (uv.y - 0.12);\n    vec2 grid_uv = vec2(uv.x * depth, depth + t * 2.0);\n    vec2 g = abs(fract(grid_uv - 0.5) - 0.5) / fwidth(grid_uv);\n    float line = min(g.x, g.y);\n    float c = 1.0 - min(line, 1.0);\n    col += u_color2 * c * exp(-depth * 0.08) * (1.0 + u_audio_bass * 1.5);\n    col += u_accent * (c * 0.4) * exp(-depth * 0.04);\n  }\n  fragColor = vec4(col * u_intensity, 1.0);\n}"
+  }
+}
