@@ -1,0 +1,16 @@
+{
+  "id": "neon-system-gauge",
+  "name": "Neon System Gauge",
+  "version": "1.0.0",
+  "author": "WallCraft Creator",
+  "category": "telemetry",
+  "description": "Real-time circular CPU and Memory performance visualizer.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": { "cols": 6, "rows": 3 },
+  "defaultPosition": { "x": 80.0, "y": 50.0 },
+  "permissions": ["system-stats"]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "neon-workspace-suite",
+  "name": "Neon Workspace Suite",
+  "author": "WallCraft Creator",
+  "version": "1.0.0",
+  "type": "widget-pack",
+  "category": "suite",
+  "categoryLabel": "Widget Suite",
+  "description": "A matching set of futuristic neon widgets featuring a digital clock, quick notes scratchpad, and live system resource gauge.",
+  "previewGradient": "linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #0f172a 100%)",
+  "tags": ["neon", "productivity", "suite", "pack"],
+  "widgets": [
+    {
+      "id": "neon-digital-clock",
+      "dir": "clock",
+      "name": "Neon Digital Clock",
+      "version": "1.0.0",
+      "desc": "Sleek glowing cyan & purple precision clock with date display."
+    },
+    {
+      "id": "neon-quick-notes",
+      "dir": "quick-notes",
+      "name": "Neon Quick Notes",
+      "version": "1.0.0",
+      "desc": "Glassmorphic desktop memo scratchpad with auto-save."
+    },
+    {
+      "id": "neon-system-gauge",
+      "dir": "system-gauge",
+      "name": "Neon System Gauge",
+      "version": "1.0.0",
+      "desc": "Real-time circular CPU and Memory performance visualizer."
+    }
+  ]
+}

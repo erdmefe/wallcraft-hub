@@ -1,0 +1,16 @@
+{
+  "id": "neon-quick-notes",
+  "name": "Neon Quick Notes",
+  "version": "1.0.0",
+  "author": "WallCraft Creator",
+  "category": "productivity",
+  "description": "Glassmorphic desktop memo scratchpad with auto-save.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": { "cols": 6, "rows": 4 },
+  "defaultPosition": { "x": 20.0, "y": 50.0 },
+  "permissions": []
+}
