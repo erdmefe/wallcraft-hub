@@ -5,7 +5,7 @@
   "author": "WallCraft Creator",
   "category": "clock",
   "description": "Sleek glowing cyan & purple precision clock with date display.",
-  "wrapper": "none"
+  "wrapper": "none",
   "entry": {
     "html": "widget.html",
     "css": "widget.css",
