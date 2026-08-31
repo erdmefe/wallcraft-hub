@@ -5,6 +5,7 @@
   "author": "WallCraft Creator",
   "category": "telemetry",
   "description": "Real-time circular CPU and Memory performance visualizer.",
+   "wrapper": "none",
   "entry": {
     "html": "widget.html",
     "css": "widget.css",
