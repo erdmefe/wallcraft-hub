@@ -5,7 +5,7 @@
   "author": "WallCraft Creator",
   "category": "productivity",
   "description": "Glassmorphic desktop memo scratchpad with auto-save.",
-   "wrapper": "none",
+  "wrapper": "none",
   "entry": {
     "html": "widget.html",
     "css": "widget.css",
