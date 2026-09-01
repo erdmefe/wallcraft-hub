@@ -1,0 +1,84 @@
+{
+  "id": "my-custom-shader",
+  "type": "shader",
+  "title": "My Custom Shader",
+  "author": "WallCraft Creator",
+  "version": "1.0.0",
+  "category": "custom",
+  "desc": "Custom WebGL dynamic shader preset for WallCraft.",
+  "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+  "downloads": "1.0k",
+  "rating": 5,
+  "tags": [
+    "custom",
+    "shader"
+  ],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "customCode": "// Auto-Detected Custom Uniforms\nuniform float u_waveSpeed;   // min: 0.1, max: 5.0, default: 1.2, label: Wave Speed\nuniform float u_waveGlow;    // min: 0.0, max: 3.0, default: 1.0, label: Bloom Glow\nuniform vec2  u_scale;       // default: [1.0, 1.0], label: Wave Scale\nuniform float u_distortion;  // min: 0.0, max: 2.0, default: 0.5, label: Distortion\n\nvoid main() {\n  vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed * u_waveSpeed;\n  float bass = u_audio_bass * 0.5;\n\n  float wave = sin(uv.x * 4.0 * u_scale.x + t) * (0.15 + bass) * (1.0 + u_distortion);\n  float dist = abs(uv.y * u_scale.y - wave);\n  float glow = 0.02 / (dist + 0.005) * u_waveGlow;\n\n  vec3 col = mix(u_color1, u_color2, uv.x + 0.5);\n  col += u_accent * glow * (1.0 + bass * 2.0) * u_intensity;\n\n  gl_FragColor = vec4(col, 1.0);\n}",
+    "passes": {
+      "common": "",
+      "bufferA": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferB": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferC": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferD": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "image": {
+        "code": "// Auto-Detected Custom Uniforms\nuniform float u_waveSpeed;   // min: 0.1, max: 5.0, default: 1.2, label: Wave Speed\nuniform float u_waveGlow;    // min: 0.0, max: 3.0, default: 1.0, label: Bloom Glow\nuniform vec2  u_scale;       // default: [1.0, 1.0], label: Wave Scale\nuniform float u_distortion;  // min: 0.0, max: 2.0, default: 0.5, label: Distortion\n\nvoid main() {\n  vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed * u_waveSpeed;\n  float bass = u_audio_bass * 0.5;\n\n  float wave = sin(uv.x * 4.0 * u_scale.x + t) * (0.15 + bass) * (1.0 + u_distortion);\n  float dist = abs(uv.y * u_scale.y - wave);\n  float glow = 0.02 / (dist + 0.005) * u_waveGlow;\n\n  vec3 col = mix(u_color1, u_color2, uv.x + 0.5);\n  col += u_accent * glow * (1.0 + bass * 2.0) * u_intensity;\n\n  gl_FragColor = vec4(col, 1.0);\n}",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    "customUniforms": {
+      "u_waveSpeed": 5,
+      "u_waveGlow": 3,
+      "u_scale": [
+        5,
+        5
+      ],
+      "u_distortion": 2
+    },
+    "editorMode": "multipass",
+    "speed": 0.8,
+    "intensity": 1.1,
+    "color1": "#022c22",
+    "color2": "#10b981",
+    "accentColor": "#06b6d4"
+  }
+}
