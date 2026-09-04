@@ -1,0 +1,17 @@
+{
+  "id": "custom-desktop-preset",
+  "type": "preset",
+  "name": "Custom Desktop Preset",
+  "title": "Custom Desktop Preset",
+  "author": "WallCraft Creator",
+  "version": "1.0.0",
+  "category": "productivity",
+  "desc": "Curated desktop theme and widget layout created with WallCraft.",
+  "activeWidgets": [],
+  "widgetWrapperStyle": {},
+  "settings": {},
+  "tags": [
+    "productivity",
+    "preset"
+  ]
+}
