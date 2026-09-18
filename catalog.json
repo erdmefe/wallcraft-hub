@@ -10,16 +10,7 @@
     "desc": "Soothing volumetric green and cyan northern lights undulating gently under a starry night sky.",
     "previewGradient": "linear-gradient(135deg, #022c22 0%, #064e3b 50%, #020617 100%)",
     "previewImage": "shaders/aurora-borealis.webp",
-    "shaderConfig": {
-      "preset": "custom",
-      "speed": 0.8,
-      "intensity": 1.1,
-      "color1": "#022c22",
-      "color2": "#10b981",
-      "accentColor": "#06b6d4",
-      "isMultiPass": false,
-      "code": "void mainImage(out vec4 fragColor, in vec2 fragCoord) {\n  vec2 uv = (fragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * 0.4 * u_speed;\n  vec3 col = vec3(0.01, 0.02, 0.05);\n  float wave1 = sin(uv.x * 3.0 + t) * 0.2;\n  float wave2 = cos(uv.x * 5.0 - t * 0.7) * 0.15;\n  float dist = abs(uv.y - wave1 - wave2);\n  float aurora = 0.04 / (dist + 0.02);\n  col += u_color2 * aurora * (0.8 + u_audio_bass * 0.4);\n  col += u_accent * (aurora * 0.5) * smoothstep(-0.2, 0.4, uv.y);\n  fragColor = vec4(col * u_intensity, 1.0);\n}"
-    },
+    "shaderFile": "aurora-borealis.json",
     "permissions": [],
     "tags": [
       "minimal",
@@ -38,63 +29,7 @@
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
     "previewImage": "shaders/custom-3d-shader-scene.webp",
-    "shaderConfig": {
-      "preset": "custom",
-      "speed": 0.8,
-      "intensity": 1.1,
-      "color1": "#022c22",
-      "color2": "#10b981",
-      "accentColor": "#06b6d4",
-      "code": "// Auto-Detected Custom Uniforms\nuniform float u_waveSpeed;   // min: 0.1, max: 5.0, default: 1.2, label: Wave Speed\nuniform float u_waveGlow;    // min: 0.0, max: 3.0, default: 1.0, label: Bloom Glow\nuniform vec2  u_scale;       // default: [1.0, 1.0], label: Wave Scale\nuniform float u_distortion;  // min: 0.0, max: 2.0, default: 0.5, label: Distortion\n\nvoid main() {\n  vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed * u_waveSpeed;\n  float bass = u_audio_bass * 0.5;\n\n  float wave = sin(uv.x * 4.0 * u_scale.x + t) * (0.15 + bass) * (1.0 + u_distortion);\n  float dist = abs(uv.y * u_scale.y - wave);\n  float glow = 0.02 / (dist + 0.005) * u_waveGlow;\n\n  vec3 col = mix(u_color1, u_color2, uv.x + 0.5);\n  col += u_accent * glow * (1.0 + bass * 2.0) * u_intensity;\n\n  gl_FragColor = vec4(col, 1.0);\n}",
-      "passes": {
-        "common": "",
-        "bufferA": {
-          "code": "",
-          "inputs": [
-            "none",
-            "none",
-            "none",
-            "none"
-          ]
-        },
-        "bufferB": {
-          "code": "",
-          "inputs": [
-            "none",
-            "none",
-            "none",
-            "none"
-          ]
-        },
-        "bufferC": {
-          "code": "",
-          "inputs": [
-            "none",
-            "none",
-            "none",
-            "none"
-          ]
-        },
-        "bufferD": {
-          "code": "",
-          "inputs": [
-            "none",
-            "none",
-            "none",
-            "none"
-          ]
-        },
-        "image": {
-          "code": "// Auto-Detected Custom Uniforms\nuniform float u_waveSpeed;   // min: 0.1, max: 5.0, default: 1.2, label: Wave Speed\nuniform float u_waveGlow;    // min: 0.0, max: 3.0, default: 1.0, label: Bloom Glow\nuniform vec2  u_scale;       // default: [1.0, 1.0], label: Wave Scale\nuniform float u_distortion;  // min: 0.0, max: 2.0, default: 0.5, label: Distortion\n\nvoid main() {\n  vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed * u_waveSpeed;\n  float bass = u_audio_bass * 0.5;\n\n  float wave = sin(uv.x * 4.0 * u_scale.x + t) * (0.15 + bass) * (1.0 + u_distortion);\n  float dist = abs(uv.y * u_scale.y - wave);\n  float glow = 0.02 / (dist + 0.005) * u_waveGlow;\n\n  vec3 col = mix(u_color1, u_color2, uv.x + 0.5);\n  col += u_accent * glow * (1.0 + bass * 2.0) * u_intensity;\n\n  gl_FragColor = vec4(col, 1.0);\n}",
-          "inputs": [
-            "none",
-            "none",
-            "none",
-            "none"
-          ]
-        }
-      }
-    },
+    "shaderFile": "custom-3d-shader-scene.json",
     "permissions": [],
     "tags": [
       "custom",
@@ -112,16 +47,7 @@
     "desc": "Futuristic neon purple and cyan audio-reactive wireframe terrain undulating in 3D perspective.",
     "previewGradient": "linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #020617 100%)",
     "previewImage": "shaders/cyber-pulse-grid.webp",
-    "shaderConfig": {
-      "preset": "custom",
-      "speed": 1.2,
-      "intensity": 1.15,
-      "color1": "#090014",
-      "color2": "#c084fc",
-      "accentColor": "#22d3ee",
-      "isMultiPass": false,
-      "code": "void mainImage(out vec4 fragColor, in vec2 fragCoord) {\n  vec2 uv = (fragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed;\n  vec3 col = u_color1;\n  if (uv.y < 0.1) {\n    float depth = -0.3 / (uv.y - 0.12);\n    vec2 grid_uv = vec2(uv.x * depth, depth + t * 2.0);\n    vec2 g = abs(fract(grid_uv - 0.5) - 0.5) / fwidth(grid_uv);\n    float line = min(g.x, g.y);\n    float c = 1.0 - min(line, 1.0);\n    col += u_color2 * c * exp(-depth * 0.08) * (1.0 + u_audio_bass * 1.5);\n    col += u_accent * (c * 0.4) * exp(-depth * 0.04);\n  }\n  fragColor = vec4(col * u_intensity, 1.0);\n}"
-    },
+    "shaderFile": "cyber-pulse-grid.json",
     "permissions": [],
     "tags": [
       "cyberpunk",
@@ -140,16 +66,7 @@
     "desc": "Warm flickering campfire flames with floating glowing sparks and ambient warm light.",
     "previewGradient": "linear-gradient(135deg, #450a0a 0%, #7c2d12 50%, #0f172a 100%)",
     "previewImage": "shaders/fire-ember-glow.webp",
-    "shaderConfig": {
-      "preset": "custom",
-      "speed": 1,
-      "intensity": 1.2,
-      "color1": "#1a0500",
-      "color2": "#f97316",
-      "accentColor": "#facc15",
-      "isMultiPass": false,
-      "code": "void mainImage(out vec4 fragColor, in vec2 fragCoord) {\n  vec2 uv = (fragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;\n  float t = u_time * u_speed;\n  vec3 col = u_color1;\n  float flame = sin(uv.x * 6.0 + t * 2.0) * cos(uv.x * 4.0 - t * 1.5) * 0.1;\n  float d = abs(uv.y + 0.3 - flame);\n  float fire = 0.06 / (d + 0.04);\n  col += u_color2 * fire * (1.0 + u_audio_bass * 0.5);\n  col += u_accent * (fire * 0.4) * step(-0.2, uv.y);\n  fragColor = vec4(col * u_intensity, 1.0);\n}"
-    },
+    "shaderFile": "fire-ember-glow.json",
     "permissions": [],
     "tags": [
       "cozy",

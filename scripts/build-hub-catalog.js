@@ -7,7 +7,7 @@
  * 
  * Scans:
  *   - shaders/*.json
- *   - widgets/*/ (manifest.json, pack.json)
+ *   - widgets/<id>/ (manifest.json, pack.json)
  *   - presets/*.wallcraft-preset.json or presets/*.json
  * 
  * Generates:
@@ -21,7 +21,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const REPO_ROOT = process.cwd();
+const REPO_ROOT = process.argv[2] ? path.resolve(process.argv[2]) : process.cwd();
 const OUTPUT_FILE = path.join(REPO_ROOT, 'catalog.json');
 
 function findPreviewImage(baseDir, itemId, fileList) {
@@ -59,7 +59,12 @@ function buildCatalog() {
 
         if (data.id && (data.title || data.name)) {
           const id = data.id;
-          let previewImage = data.previewImage || null;
+          let previewImage = null;
+          // 1. Developer manifest override (highest priority)
+          if (data.previewImage && typeof data.previewImage === 'string') {
+            previewImage = data.previewImage.trim();
+          }
+          // 2. Auto-generated / discovered snapshot fallback
           if (!previewImage) {
             const autoImg = findPreviewImage('shaders', id, files);
             if (autoImg) previewImage = autoImg;
@@ -76,15 +81,7 @@ function buildCatalog() {
             desc: data.description || data.desc || '',
             previewGradient: data.previewGradient || 'linear-gradient(135deg, #0f172a 0%, #020617 100%)',
             previewImage,
-            shaderConfig: data.shaderConfig || {
-              preset: data.preset || 'custom',
-              speed: data.speed ?? 1.0,
-              intensity: data.intensity ?? 1.0,
-              color1: data.color1 || '#ff007f',
-              color2: data.color2 || '#00f0ff',
-              accentColor: data.accentColor || '#ffe600',
-              customCode: data.customCode || data.code || ''
-            },
+            shaderFile: jsonFile,
             permissions: Array.isArray(data.permissions) ? data.permissions : [],
             tags: Array.isArray(data.tags) ? data.tags : ['shader', data.category || 'custom']
           });
@@ -141,7 +138,12 @@ function buildCatalog() {
             }
           }
 
-          let previewImage = packData.previewImage || null;
+          let previewImage = null;
+          // 1. Developer manifest override (highest priority)
+          if (packData.previewImage && typeof packData.previewImage === 'string') {
+            previewImage = packData.previewImage.trim();
+          }
+          // 2. Auto-generated / discovered snapshot fallback
           if (!previewImage) {
             const autoImg = findPreviewImage(`widgets/${dirName}`, dirName, subFiles);
             if (autoImg) previewImage = autoImg;
@@ -170,7 +172,12 @@ function buildCatalog() {
       } else if (isSingle) {
         try {
           const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-          let previewImage = manifest.previewImage || null;
+          let previewImage = null;
+          // 1. Developer manifest override (highest priority)
+          if (manifest.previewImage && typeof manifest.previewImage === 'string') {
+            previewImage = manifest.previewImage.trim();
+          }
+          // 2. Auto-generated / discovered snapshot fallback
           if (!previewImage) {
             const autoImg = findPreviewImage(`widgets/${dirName}`, dirName, subFiles);
             if (autoImg) previewImage = autoImg;
@@ -213,7 +220,12 @@ function buildCatalog() {
 
         if (presetData.id && (presetData.name || presetData.title)) {
           const presetId = presetData.id;
-          let previewImage = presetData.previewImage || null;
+          let previewImage = null;
+          // 1. Developer manifest override (highest priority)
+          if (presetData.previewImage && typeof presetData.previewImage === 'string') {
+            previewImage = presetData.previewImage.trim();
+          }
+          // 2. Auto-generated / discovered snapshot fallback
           if (!previewImage) {
             const autoImg = findPreviewImage('presets', presetId, files);
             if (autoImg) previewImage = autoImg;
@@ -234,8 +246,9 @@ function buildCatalog() {
             accentColor: presetData.accentColor || '#00f0ff',
             activeWidgets: Array.isArray(presetData.activeWidgets) ? presetData.activeWidgets : [],
             widgetWrapperStyle: presetData.widgetWrapperStyle || 'squircle-acrylic',
-            settings: presetData.settings || {},
-            presetPayload: presetData,
+            wallpaperType: presetData.settings?.wallpaperType || presetData.wallpaperType || 'image',
+            shaderPreset: presetData.settings?.shaderConfig?.preset || presetData.shaderPreset || null,
+            presetFile: pFile,
             permissions: Array.isArray(presetData.permissions) ? presetData.permissions : [],
             tags: Array.isArray(presetData.tags) ? presetData.tags : ['preset', 'theme']
           });
@@ -247,7 +260,14 @@ function buildCatalog() {
     console.log(`[OK] Processed ${catalog.filter(i => i.type === 'preset').length} presets.`);
   }
 
-  // 4. Write catalog.json
+  // 4. Safety Guard
+  if (catalog.length === 0 && !fs.existsSync(path.join(REPO_ROOT, 'shaders')) && !fs.existsSync(path.join(REPO_ROOT, 'widgets'))) {
+    console.warn(`[Warning] Neither shaders/ nor widgets/ directory was found in ${REPO_ROOT}.`);
+    console.warn(`[Info] If your hub repository is located elsewhere, run: node scripts/build-hub-catalog.js <path-to-hub>`);
+    return;
+  }
+
+  // 5. Write catalog.json
   const jsonContent = JSON.stringify(catalog, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
   console.log(`[SUCCESS] Compiled ${catalog.length} items to ${OUTPUT_FILE} (${(Buffer.byteLength(jsonContent) / 1024).toFixed(1)} KB)`);
