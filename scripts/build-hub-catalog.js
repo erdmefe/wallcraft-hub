@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WallCraft Hub — Automated Static Catalog Compiler
+ * WallCraft Hub â€” Automated Static Catalog Compiler
  * 
  * Usage:
  *   node scripts/build-hub-catalog.js
@@ -36,7 +36,14 @@ function findPreviewImage(baseDir, itemId, fileList) {
   ];
   for (const c of candidates) {
     if (fileList.includes(c)) {
-      return path.posix.join(baseDir, c);
+      const relPath = path.posix.join(baseDir, c);
+      const fullPath = path.join(REPO_ROOT, baseDir, c);
+      try {
+        const stats = fs.statSync(fullPath);
+        return `${relPath}?t=${Math.floor(stats.mtimeMs)}`;
+      } catch (e) {
+        return relPath;
+      }
     }
   }
   return null;
