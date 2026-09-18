@@ -2,18 +2,18 @@
 /**
  * WallCraft Hub — Automated Preview Snapshot Generator
  * 
- * Pre-renders and captures crisp 400x240 WebP preview images for widgets
+ * Pre-renders and captures crisp 480x270 (exact 16:9) WebP preview images for widgets
  * and shaders that do not have a developer-specified previewImage.
  * 
  * Rules:
  * 1. Developer Manifest Override: If manifest.json (or shader .json) specifies
  *    previewImage, it is NEVER overwritten.
- * 2. Disk check: If a valid preview image (> 500 bytes) already exists on disk, it is skipped.
- * 3. Shaders: Rendered via WallCraftShaderEngine.renderSnapshot() for 100% GLSL 3.00 & WebGL 2 parity.
- * 4. Widgets: Loaded into isolated container, pre-rendered with mock WallCraft SDK.
+ * 2. Disk check: If a valid preview image exists on disk, it is skipped unless --force is passed.
+ * 3. Shaders: Rendered via WallCraftShaderEngine.renderSnapshot() at 480x270 for 100% GLSL 3.00 & WebGL 2 parity.
+ * 4. Widgets: Loaded into isolated flexbox stage with mock WallCraft SDK, pixel-perfect centered.
  * 
  * Usage:
- *   npx electron generate-hub-previews.js [path-to-hub-repo]
+ *   npx electron generate-hub-previews.js [path-to-hub-repo] [--force]
  */
 
 const { app, BrowserWindow } = require('electron');
@@ -24,7 +24,9 @@ const path = require('path');
 app.commandLine.appendSwitch('disable-gpu-sandbox');
 app.commandLine.appendSwitch('no-sandbox');
 
-const targetHubDir = process.argv[2] ? path.resolve(process.argv[2]) : process.cwd();
+const args = process.argv.slice(2);
+const forceRegenerate = args.includes('--force');
+const targetHubDir = args.find(a => !a.startsWith('--')) ? path.resolve(args.find(a => !a.startsWith('--'))) : process.cwd();
 
 function findShaderEngineFiles() {
   const candidates = [
@@ -48,8 +50,9 @@ function findShaderEngineFiles() {
 
 async function run() {
   console.log('========================================================');
-  console.log('  WallCraft Hub — Build-Time Snapshot Generator');
+  console.log('  WallCraft Hub — Build-Time Snapshot Generator (16:9)');
   console.log(`  Target Directory: ${targetHubDir}`);
+  console.log(`  Force Mode: ${forceRegenerate}`);
   console.log('========================================================\n');
 
   const widgetsDir = path.join(targetHubDir, 'widgets');
@@ -58,10 +61,12 @@ async function run() {
   let generatedCount = 0;
   let skippedCount = 0;
 
-  // 1. Create a hidden BrowserWindow for taking snapshots
+  // 1. Create a frameless BrowserWindow with exact 480x270 content size (16:9)
   const win = new BrowserWindow({
-    width: 400,
-    height: 240,
+    width: 480,
+    height: 270,
+    useContentSize: true,
+    frame: false,
     show: false,
     webPreferences: {
       offscreen: false,
@@ -91,18 +96,18 @@ async function run() {
           continue;
         }
 
-        // Rule 2: Disk check (re-render if corrupt or < 500 bytes)
+        // Rule 2: Disk check
         const webpTarget = path.join(shadersDir, `${shaderId}.webp`);
         const pngTarget = path.join(shadersDir, `${shaderId}.png`);
         const hasValidWebp = fs.existsSync(webpTarget) && fs.statSync(webpTarget).size > 500;
         const hasValidPng = fs.existsSync(pngTarget) && fs.statSync(pngTarget).size > 500;
-        if (hasValidWebp || hasValidPng) {
+        if (!forceRegenerate && (hasValidWebp || hasValidPng)) {
           console.log(`  [SKIP] Shader "${shaderId}": valid preview image already exists on disk.`);
           skippedCount++;
           continue;
         }
 
-        console.log(`  [RENDER] Shader "${shaderId}" -> Generating WebP snapshot...`);
+        console.log(`  [RENDER] Shader "${shaderId}" -> Generating 16:9 WebP snapshot...`);
         const cfg = data.shaderConfig || data;
 
         if (engineFiles) {
@@ -116,7 +121,7 @@ async function run() {
               <script>
                 try {
                   const cfg = ${JSON.stringify(cfg)};
-                  window.__snapshotResult = WallCraftShaderEngine.renderSnapshot(cfg, 400, 240, 1.5);
+                  window.__snapshotResult = WallCraftShaderEngine.renderSnapshot(cfg, 480, 270, 1.5);
                 } catch(e) {
                   window.__snapshotResult = null;
                 }
@@ -140,7 +145,7 @@ async function run() {
         }
 
         // Fallback capturePage if ShaderEngine is unavailable
-        const img = await win.webContents.capturePage({ x: 0, y: 0, width: 400, height: 240 });
+        const img = await win.webContents.capturePage({ x: 0, y: 0, width: 480, height: 270 });
         const webpBuf = img.toWEBP ? img.toWEBP(85) : img.toPNG();
         fs.writeFileSync(webpTarget, webpBuf);
         console.log(`  [OK] Saved: shaders/${shaderId}.webp (${(webpBuf.length / 1024).toFixed(1)} KB)`);
@@ -179,12 +184,12 @@ async function run() {
           continue;
         }
 
-        // Rule 2: Disk check (re-render if corrupt or < 500 bytes)
+        // Rule 2: Disk check
         const webpTarget = path.join(itemDir, 'preview.webp');
         const pngTarget = path.join(itemDir, 'preview.png');
         const hasValidWebp = fs.existsSync(webpTarget) && fs.statSync(webpTarget).size > 500;
         const hasValidPng = fs.existsSync(pngTarget) && fs.statSync(pngTarget).size > 500;
-        if (hasValidWebp || hasValidPng) {
+        if (!forceRegenerate && (hasValidWebp || hasValidPng)) {
           console.log(`  [SKIP] Widget "${widgetId}": preview image already exists on disk.`);
           skippedCount++;
           continue;
@@ -209,7 +214,7 @@ async function run() {
           continue;
         }
 
-        console.log(`  [RENDER] Widget "${widgetId}" -> Generating snapshot...`);
+        console.log(`  [RENDER] Widget "${widgetId}" -> Generating centered 16:9 snapshot...`);
         const htmlContent = fs.readFileSync(htmlFile, 'utf8');
         const cssContent = fs.existsSync(cssFile) ? fs.readFileSync(cssFile, 'utf8') : '';
         const jsContent = fs.existsSync(jsFile) ? fs.readFileSync(jsFile, 'utf8') : '';
@@ -220,23 +225,51 @@ async function run() {
           <head>
             <meta charset="utf-8">
             <style>
-              body, html {
-                margin: 0; padding: 0; width: 400px; height: 240px; overflow: hidden;
-                background: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                display: flex; align-items: center; justify-content: center;
+              *, *::before, *::after {
+                box-sizing: border-box;
+              }
+              html, body {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                background: #0b0f19;
+                color: #f8fafc;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              #widget-stage {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+              }
+              #widget-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: scale(1.15);
+                transform-origin: center center;
               }
               ${cssContent}
             </style>
           </head>
           <body>
-            <div id="widget-container" style="transform: scale(0.9); transform-origin: center;">
-              ${htmlContent}
+            <div id="widget-stage">
+              <div id="widget-container">
+                ${htmlContent}
+              </div>
             </div>
             <script>
               window.wallcraft = {
                 on: () => {},
                 emit: () => {},
-                getStats: () => ({ cpu: 28, ram: 42, temp: 48 }),
+                getStats: () => ({ cpu: 24, ram: 42, temp: 48 }),
                 getWeather: () => ({ temp: 22, condition: 'Clear', city: 'Istanbul' })
               };
               try {
@@ -250,7 +283,7 @@ async function run() {
         await win.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(renderHtml)}`);
         await wait(500);
 
-        const img = await win.webContents.capturePage({ x: 0, y: 0, width: 400, height: 240 });
+        const img = await win.webContents.capturePage({ x: 0, y: 0, width: 480, height: 270 });
         const webpBuf = img.toWEBP ? img.toWEBP(85) : img.toPNG();
         fs.writeFileSync(webpTarget, webpBuf);
         console.log(`  [OK] Saved: widgets/${dirName}/preview.webp (${(webpBuf.length / 1024).toFixed(1)} KB)`);
