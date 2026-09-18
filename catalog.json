@@ -9,7 +9,7 @@
     "categoryLabel": "Minimal / Zen",
     "desc": "Soothing volumetric green and cyan northern lights undulating gently under a starry night sky.",
     "previewGradient": "linear-gradient(135deg, #022c22 0%, #064e3b 50%, #020617 100%)",
-    "previewImage": "shaders/aurora-borealis.webp?t=1789758773241",
+    "previewImage": "shaders/aurora-borealis.webp?t=1789759875626",
     "shaderFile": "aurora-borealis.json",
     "permissions": [],
     "tags": [
@@ -28,7 +28,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/custom-3d-shader-scene.webp?t=1789758773824",
+    "previewImage": "shaders/custom-3d-shader-scene.webp?t=1789759876187",
     "shaderFile": "custom-3d-shader-scene.json",
     "permissions": [],
     "tags": [
@@ -46,7 +46,7 @@
     "categoryLabel": "Cyberpunk",
     "desc": "Futuristic neon purple and cyan audio-reactive wireframe terrain undulating in 3D perspective.",
     "previewGradient": "linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #020617 100%)",
-    "previewImage": "shaders/cyber-pulse-grid.webp?t=1789758774391",
+    "previewImage": "shaders/cyber-pulse-grid.webp?t=1789759876754",
     "shaderFile": "cyber-pulse-grid.json",
     "permissions": [],
     "tags": [
@@ -65,7 +65,7 @@
     "categoryLabel": "Minimal / Zen",
     "desc": "Warm flickering campfire flames with floating glowing sparks and ambient warm light.",
     "previewGradient": "linear-gradient(135deg, #450a0a 0%, #7c2d12 50%, #0f172a 100%)",
-    "previewImage": "shaders/fire-ember-glow.webp?t=1789758774953",
+    "previewImage": "shaders/fire-ember-glow.webp?t=1789759877319",
     "shaderFile": "fire-ember-glow.json",
     "permissions": [],
     "tags": [
@@ -86,7 +86,7 @@
     "categoryLabel": "Productivity",
     "desc": "Minimalist wisdom quote pill with smooth typography.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "widgets/quote-zen/preview.webp?t=1789758775598",
+    "previewImage": "widgets/quote-zen/preview.webp?t=1789759877936",
     "permissions": [],
     "tags": [
       "widget"
@@ -104,7 +104,7 @@
     "categoryLabel": "Productivity",
     "desc": "Minimalist digital glow clock with date badge.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "widgets/retro-clock/preview.webp?t=1789758776271",
+    "previewImage": "widgets/retro-clock/preview.webp?t=1789759878555",
     "permissions": [],
     "tags": [
       "widget"
@@ -122,7 +122,7 @@
     "categoryLabel": "Productivity",
     "desc": "Minimalist digital glow clock with date badge.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "widgets/retro-neon-clock/preview.webp?t=1789758776897",
+    "previewImage": "widgets/retro-neon-clock/preview.webp?t=1789759879188",
     "permissions": [],
     "tags": [
       "widget"
@@ -140,7 +140,7 @@
     "categoryLabel": "Widget Suite",
     "desc": "A matching set of futuristic neon widgets featuring a digital clock, quick notes scratchpad, and live system resource gauge.",
     "previewGradient": "linear-gradient(135deg, #3b0764 0%, #1e1b4b 50%, #0f172a 100%)",
-    "previewImage": "widgets/sample-widget-pack/preview.webp?t=1789758777581",
+    "previewImage": "widgets/sample-widget-pack/preview.webp?t=1789759879871",
     "permissions": [
       "system-stats"
     ],
@@ -194,7 +194,7 @@
     "categoryLabel": "Productivity",
     "desc": "Minimal ve responsive dijital saat widget'ı.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "widgets/simple-clock-widget/preview.webp?t=1789758778204",
+    "previewImage": "widgets/simple-clock-widget/preview.webp?t=1789759880495",
     "permissions": [],
     "tags": [
       "widget"
@@ -212,7 +212,7 @@
     "categoryLabel": "Productivity",
     "desc": "Ultra-compact glowing pill showing live CPU load and RAM usage.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "widgets/system-capsule/preview.webp?t=1789758778835",
+    "previewImage": "widgets/system-capsule/preview.webp?t=1789759881121",
     "permissions": [
       "system-stats"
     ],

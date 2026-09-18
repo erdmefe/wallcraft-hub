@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WallCraft Hub — Automated Preview Snapshot Generator
+ * WallCraft Hub â€” Automated Preview Snapshot Generator
  * 
  * Pre-renders and captures crisp 480x270 (exact 16:9) WebP preview images for widgets
  * and shaders that do not have a developer-specified previewImage.
@@ -50,7 +50,7 @@ function findShaderEngineFiles() {
 
 async function run() {
   console.log('========================================================');
-  console.log('  WallCraft Hub — Build-Time Snapshot Generator (16:9)');
+  console.log('  WallCraft Hub â€” Build-Time Snapshot Generator (16:9)');
   console.log(`  Target Directory: ${targetHubDir}`);
   console.log(`  Force Mode: ${forceRegenerate}`);
   console.log('========================================================\n');
@@ -253,7 +253,7 @@ async function run() {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transform: scale(1.15);
+                transform: scale(1.45);
                 transform-origin: center center;
               }
               ${cssContent}
