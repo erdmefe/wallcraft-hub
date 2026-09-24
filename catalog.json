@@ -1,24 +1,5 @@
 [
   {
-    "id": "aurora-borealis",
-    "title": "Nordic Aurora Borealis",
-    "type": "shader",
-    "author": "NordicVisuals",
-    "version": "1.0.0",
-    "category": "minimal",
-    "categoryLabel": "Minimal / Zen",
-    "desc": "Soothing volumetric green and cyan northern lights undulating gently under a starry night sky.",
-    "previewGradient": "linear-gradient(135deg, #022c22 0%, #064e3b 50%, #020617 100%)",
-    "previewImage": "shaders/aurora-borealis.webp?t=1789759875626",
-    "shaderFile": "aurora-borealis.json",
-    "permissions": [],
-    "tags": [
-      "minimal",
-      "nature",
-      "aurora"
-    ]
-  },
-  {
     "id": "custom-3d-shader-scene",
     "title": "Custom 3D Shader Scene",
     "type": "shader",
@@ -53,25 +34,6 @@
       "cyberpunk",
       "audio",
       "grid"
-    ]
-  },
-  {
-    "id": "fire-ember-glow",
-    "title": "Cozy Fire & Embers",
-    "type": "shader",
-    "author": "EmberLabs",
-    "version": "1.0.0",
-    "category": "minimal",
-    "categoryLabel": "Minimal / Zen",
-    "desc": "Warm flickering campfire flames with floating glowing sparks and ambient warm light.",
-    "previewGradient": "linear-gradient(135deg, #450a0a 0%, #7c2d12 50%, #0f172a 100%)",
-    "previewImage": "shaders/fire-ember-glow.webp?t=1789759877319",
-    "shaderFile": "fire-ember-glow.json",
-    "permissions": [],
-    "tags": [
-      "cozy",
-      "fire",
-      "minimal"
     ]
   },
   {
@@ -271,7 +233,7 @@
     ],
     "widgetWrapperStyle": "aurora-prism",
     "wallpaperType": "image",
-    "shaderPreset": "custom",
+    "shaderPreset": "aurora-borealis",
     "presetFile": "main-wp-preset.wallcraft-preset.json",
     "permissions": [],
     "tags": [
@@ -307,7 +269,7 @@
     ],
     "widgetWrapperStyle": "aurora-prism",
     "wallpaperType": "image",
-    "shaderPreset": "custom",
+    "shaderPreset": "aurora-borealis",
     "presetFile": "modal-demo.wallcraft-preset.json",
     "permissions": [],
     "tags": [
@@ -343,7 +305,7 @@
     ],
     "widgetWrapperStyle": "aurora-prism",
     "wallpaperType": "image",
-    "shaderPreset": "custom",
+    "shaderPreset": "aurora-borealis",
     "presetFile": "obs-quoter.wallcraft-preset.json",
     "permissions": [],
     "tags": [
