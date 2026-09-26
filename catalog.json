@@ -1,5 +1,22 @@
 [
   {
+    "id": "liquid-mercury",
+    "title": "Liquid Mercury",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/liquid-mercury.webp?t=1790449590273",
+    "shaderFile": "liquid-mercury.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ]
+  },
+  {
     "id": "team-hours",
     "dir": "team-hours",
     "repoDirName": "team-hours",
