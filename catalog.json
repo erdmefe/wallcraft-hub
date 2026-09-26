@@ -28,7 +28,9 @@
     "categoryLabel": "Productivity",
     "desc": "Team times: displays the local times of the selected cities and highlights the window where everyone's working hours overlap.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": "preview.png",
+    "previewImage": "widgets/team-hours/preview.png",
+    "icon": "widgets/team-hours/icon.png",
+    "iconImage": "widgets/team-hours/icon.png",
     "permissions": [],
     "tags": [
       "widget"
