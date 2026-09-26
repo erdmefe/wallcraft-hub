@@ -28,7 +28,7 @@
     "categoryLabel": "Productivity",
     "desc": "Minimal ve responsive dijital saat widget'ı.",
     "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
-    "previewImage": null,
+    "previewImage": "widgets/simple-clock/preview.webp?t=1790453640695",
     "icon": null,
     "iconImage": null,
     "permissions": [],
