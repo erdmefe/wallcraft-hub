@@ -17,6 +17,26 @@
     ]
   },
   {
+    "id": "simple-clock",
+    "dir": "simple-clock",
+    "repoDirName": "simple-clock",
+    "type": "widget",
+    "title": "Simple Clock",
+    "author": "Erdem Efe",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Minimal ve responsive dijital saat widget'ı.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": null,
+    "icon": null,
+    "iconImage": null,
+    "permissions": [],
+    "tags": [
+      "widget"
+    ]
+  },
+  {
     "id": "team-hours",
     "dir": "team-hours",
     "repoDirName": "team-hours",
