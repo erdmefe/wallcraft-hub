@@ -1,0 +1,882 @@
+{
+  "id": "team-hours",
+  "name": "Team Hours",
+  "version": "1.0.0",
+  "author": "Bunny",
+  "description": "Team times: displays the local times of the selected cities and highlights the window where everyone's working hours overlap.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 5
+  },
+  "wrapper": "default",
+  "pinMode": "default",
+  "icon": "icon.png",
+  "previewImage": "preview.png",
+  "configSchema": [
+    {
+      "key": "cardTitle",
+      "label": "Header Title",
+      "type": "text",
+      "default": "TEAM HOURS"
+    },
+    {
+      "key": "city1",
+      "label": "City 1",
+      "type": "select",
+      "default": "Europe/London",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "Europe/Istanbul",
+          "label": "Istanbul"
+        },
+        {
+          "value": "Europe/London",
+          "label": "London"
+        },
+        {
+          "value": "Europe/Dublin",
+          "label": "Dublin"
+        },
+        {
+          "value": "Europe/Lisbon",
+          "label": "Lisbon"
+        },
+        {
+          "value": "Europe/Madrid",
+          "label": "Madrid"
+        },
+        {
+          "value": "Europe/Paris",
+          "label": "Paris"
+        },
+        {
+          "value": "Europe/Berlin",
+          "label": "Berlin"
+        },
+        {
+          "value": "Europe/Amsterdam",
+          "label": "Amsterdam"
+        },
+        {
+          "value": "Europe/Stockholm",
+          "label": "Stockholm"
+        },
+        {
+          "value": "Europe/Oslo",
+          "label": "Oslo"
+        },
+        {
+          "value": "Europe/Warsaw",
+          "label": "Warsaw"
+        },
+        {
+          "value": "Europe/Prague",
+          "label": "Prague"
+        },
+        {
+          "value": "Europe/Kyiv",
+          "label": "Kyiv"
+        },
+        {
+          "value": "Europe/Moscow",
+          "label": "Moscow"
+        },
+        {
+          "value": "Europe/Athens",
+          "label": "Athens"
+        },
+        {
+          "value": "Africa/Cairo",
+          "label": "Cairo"
+        },
+        {
+          "value": "Africa/Lagos",
+          "label": "Lagos"
+        },
+        {
+          "value": "Africa/Nairobi",
+          "label": "Nairobi"
+        },
+        {
+          "value": "Africa/Johannesburg",
+          "label": "Johannesburg"
+        },
+        {
+          "value": "Asia/Jerusalem",
+          "label": "Jerusalem"
+        },
+        {
+          "value": "Asia/Dubai",
+          "label": "Dubai"
+        },
+        {
+          "value": "Asia/Karachi",
+          "label": "Karachi"
+        },
+        {
+          "value": "Asia/Kolkata",
+          "label": "Kolkata"
+        },
+        {
+          "value": "Asia/Dhaka",
+          "label": "Dhaka"
+        },
+        {
+          "value": "Asia/Bangkok",
+          "label": "Bangkok"
+        },
+        {
+          "value": "Asia/Jakarta",
+          "label": "Jakarta"
+        },
+        {
+          "value": "Asia/Singapore",
+          "label": "Singapore"
+        },
+        {
+          "value": "Asia/Hong_Kong",
+          "label": "Hong Kong"
+        },
+        {
+          "value": "Asia/Shanghai",
+          "label": "Shanghai"
+        },
+        {
+          "value": "Asia/Taipei",
+          "label": "Taipei"
+        },
+        {
+          "value": "Asia/Seoul",
+          "label": "Seoul"
+        },
+        {
+          "value": "Asia/Tokyo",
+          "label": "Tokyo"
+        },
+        {
+          "value": "Australia/Perth",
+          "label": "Perth"
+        },
+        {
+          "value": "Australia/Sydney",
+          "label": "Sydney"
+        },
+        {
+          "value": "Pacific/Auckland",
+          "label": "Auckland"
+        },
+        {
+          "value": "America/St_Johns",
+          "label": "St. John's"
+        },
+        {
+          "value": "America/Halifax",
+          "label": "Halifax"
+        },
+        {
+          "value": "America/New_York",
+          "label": "New York"
+        },
+        {
+          "value": "America/Toronto",
+          "label": "Toronto"
+        },
+        {
+          "value": "America/Chicago",
+          "label": "Chicago"
+        },
+        {
+          "value": "America/Mexico_City",
+          "label": "Mexico City"
+        },
+        {
+          "value": "America/Bogota",
+          "label": "Bogota"
+        },
+        {
+          "value": "America/Sao_Paulo",
+          "label": "Sao Paulo"
+        },
+        {
+          "value": "America/Denver",
+          "label": "Denver"
+        },
+        {
+          "value": "America/Phoenix",
+          "label": "Phoenix"
+        },
+        {
+          "value": "America/Los_Angeles",
+          "label": "Los Angeles"
+        },
+        {
+          "value": "America/Vancouver",
+          "label": "Vancouver"
+        },
+        {
+          "value": "UTC",
+          "label": "UTC"
+        }
+      ]
+    },
+    {
+      "key": "city2",
+      "label": "City 2",
+      "type": "select",
+      "default": "America/New_York",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "Europe/Istanbul",
+          "label": "Istanbul"
+        },
+        {
+          "value": "Europe/London",
+          "label": "London"
+        },
+        {
+          "value": "Europe/Dublin",
+          "label": "Dublin"
+        },
+        {
+          "value": "Europe/Lisbon",
+          "label": "Lisbon"
+        },
+        {
+          "value": "Europe/Madrid",
+          "label": "Madrid"
+        },
+        {
+          "value": "Europe/Paris",
+          "label": "Paris"
+        },
+        {
+          "value": "Europe/Berlin",
+          "label": "Berlin"
+        },
+        {
+          "value": "Europe/Amsterdam",
+          "label": "Amsterdam"
+        },
+        {
+          "value": "Europe/Stockholm",
+          "label": "Stockholm"
+        },
+        {
+          "value": "Europe/Oslo",
+          "label": "Oslo"
+        },
+        {
+          "value": "Europe/Warsaw",
+          "label": "Warsaw"
+        },
+        {
+          "value": "Europe/Prague",
+          "label": "Prague"
+        },
+        {
+          "value": "Europe/Kyiv",
+          "label": "Kyiv"
+        },
+        {
+          "value": "Europe/Moscow",
+          "label": "Moscow"
+        },
+        {
+          "value": "Europe/Athens",
+          "label": "Athens"
+        },
+        {
+          "value": "Africa/Cairo",
+          "label": "Cairo"
+        },
+        {
+          "value": "Africa/Lagos",
+          "label": "Lagos"
+        },
+        {
+          "value": "Africa/Nairobi",
+          "label": "Nairobi"
+        },
+        {
+          "value": "Africa/Johannesburg",
+          "label": "Johannesburg"
+        },
+        {
+          "value": "Asia/Jerusalem",
+          "label": "Jerusalem"
+        },
+        {
+          "value": "Asia/Dubai",
+          "label": "Dubai"
+        },
+        {
+          "value": "Asia/Karachi",
+          "label": "Karachi"
+        },
+        {
+          "value": "Asia/Kolkata",
+          "label": "Kolkata"
+        },
+        {
+          "value": "Asia/Dhaka",
+          "label": "Dhaka"
+        },
+        {
+          "value": "Asia/Bangkok",
+          "label": "Bangkok"
+        },
+        {
+          "value": "Asia/Jakarta",
+          "label": "Jakarta"
+        },
+        {
+          "value": "Asia/Singapore",
+          "label": "Singapore"
+        },
+        {
+          "value": "Asia/Hong_Kong",
+          "label": "Hong Kong"
+        },
+        {
+          "value": "Asia/Shanghai",
+          "label": "Shanghai"
+        },
+        {
+          "value": "Asia/Taipei",
+          "label": "Taipei"
+        },
+        {
+          "value": "Asia/Seoul",
+          "label": "Seoul"
+        },
+        {
+          "value": "Asia/Tokyo",
+          "label": "Tokyo"
+        },
+        {
+          "value": "Australia/Perth",
+          "label": "Perth"
+        },
+        {
+          "value": "Australia/Sydney",
+          "label": "Sydney"
+        },
+        {
+          "value": "Pacific/Auckland",
+          "label": "Auckland"
+        },
+        {
+          "value": "America/St_Johns",
+          "label": "St. John's"
+        },
+        {
+          "value": "America/Halifax",
+          "label": "Halifax"
+        },
+        {
+          "value": "America/New_York",
+          "label": "New York"
+        },
+        {
+          "value": "America/Toronto",
+          "label": "Toronto"
+        },
+        {
+          "value": "America/Chicago",
+          "label": "Chicago"
+        },
+        {
+          "value": "America/Mexico_City",
+          "label": "Mexico City"
+        },
+        {
+          "value": "America/Bogota",
+          "label": "Bogota"
+        },
+        {
+          "value": "America/Sao_Paulo",
+          "label": "Sao Paulo"
+        },
+        {
+          "value": "America/Denver",
+          "label": "Denver"
+        },
+        {
+          "value": "America/Phoenix",
+          "label": "Phoenix"
+        },
+        {
+          "value": "America/Los_Angeles",
+          "label": "Los Angeles"
+        },
+        {
+          "value": "America/Vancouver",
+          "label": "Vancouver"
+        },
+        {
+          "value": "UTC",
+          "label": "UTC"
+        }
+      ]
+    },
+    {
+      "key": "city3",
+      "label": "City 3",
+      "type": "select",
+      "default": "Asia/Tokyo",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "Europe/Istanbul",
+          "label": "Istanbul"
+        },
+        {
+          "value": "Europe/London",
+          "label": "London"
+        },
+        {
+          "value": "Europe/Dublin",
+          "label": "Dublin"
+        },
+        {
+          "value": "Europe/Lisbon",
+          "label": "Lisbon"
+        },
+        {
+          "value": "Europe/Madrid",
+          "label": "Madrid"
+        },
+        {
+          "value": "Europe/Paris",
+          "label": "Paris"
+        },
+        {
+          "value": "Europe/Berlin",
+          "label": "Berlin"
+        },
+        {
+          "value": "Europe/Amsterdam",
+          "label": "Amsterdam"
+        },
+        {
+          "value": "Europe/Stockholm",
+          "label": "Stockholm"
+        },
+        {
+          "value": "Europe/Oslo",
+          "label": "Oslo"
+        },
+        {
+          "value": "Europe/Warsaw",
+          "label": "Warsaw"
+        },
+        {
+          "value": "Europe/Prague",
+          "label": "Prague"
+        },
+        {
+          "value": "Europe/Kyiv",
+          "label": "Kyiv"
+        },
+        {
+          "value": "Europe/Moscow",
+          "label": "Moscow"
+        },
+        {
+          "value": "Europe/Athens",
+          "label": "Athens"
+        },
+        {
+          "value": "Africa/Cairo",
+          "label": "Cairo"
+        },
+        {
+          "value": "Africa/Lagos",
+          "label": "Lagos"
+        },
+        {
+          "value": "Africa/Nairobi",
+          "label": "Nairobi"
+        },
+        {
+          "value": "Africa/Johannesburg",
+          "label": "Johannesburg"
+        },
+        {
+          "value": "Asia/Jerusalem",
+          "label": "Jerusalem"
+        },
+        {
+          "value": "Asia/Dubai",
+          "label": "Dubai"
+        },
+        {
+          "value": "Asia/Karachi",
+          "label": "Karachi"
+        },
+        {
+          "value": "Asia/Kolkata",
+          "label": "Kolkata"
+        },
+        {
+          "value": "Asia/Dhaka",
+          "label": "Dhaka"
+        },
+        {
+          "value": "Asia/Bangkok",
+          "label": "Bangkok"
+        },
+        {
+          "value": "Asia/Jakarta",
+          "label": "Jakarta"
+        },
+        {
+          "value": "Asia/Singapore",
+          "label": "Singapore"
+        },
+        {
+          "value": "Asia/Hong_Kong",
+          "label": "Hong Kong"
+        },
+        {
+          "value": "Asia/Shanghai",
+          "label": "Shanghai"
+        },
+        {
+          "value": "Asia/Taipei",
+          "label": "Taipei"
+        },
+        {
+          "value": "Asia/Seoul",
+          "label": "Seoul"
+        },
+        {
+          "value": "Asia/Tokyo",
+          "label": "Tokyo"
+        },
+        {
+          "value": "Australia/Perth",
+          "label": "Perth"
+        },
+        {
+          "value": "Australia/Sydney",
+          "label": "Sydney"
+        },
+        {
+          "value": "Pacific/Auckland",
+          "label": "Auckland"
+        },
+        {
+          "value": "America/St_Johns",
+          "label": "St. John's"
+        },
+        {
+          "value": "America/Halifax",
+          "label": "Halifax"
+        },
+        {
+          "value": "America/New_York",
+          "label": "New York"
+        },
+        {
+          "value": "America/Toronto",
+          "label": "Toronto"
+        },
+        {
+          "value": "America/Chicago",
+          "label": "Chicago"
+        },
+        {
+          "value": "America/Mexico_City",
+          "label": "Mexico City"
+        },
+        {
+          "value": "America/Bogota",
+          "label": "Bogota"
+        },
+        {
+          "value": "America/Sao_Paulo",
+          "label": "Sao Paulo"
+        },
+        {
+          "value": "America/Denver",
+          "label": "Denver"
+        },
+        {
+          "value": "America/Phoenix",
+          "label": "Phoenix"
+        },
+        {
+          "value": "America/Los_Angeles",
+          "label": "Los Angeles"
+        },
+        {
+          "value": "America/Vancouver",
+          "label": "Vancouver"
+        },
+        {
+          "value": "UTC",
+          "label": "UTC"
+        }
+      ]
+    },
+    {
+      "key": "city4",
+      "label": "City 4 (optional)",
+      "type": "select",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "Europe/Istanbul",
+          "label": "Istanbul"
+        },
+        {
+          "value": "Europe/London",
+          "label": "London"
+        },
+        {
+          "value": "Europe/Dublin",
+          "label": "Dublin"
+        },
+        {
+          "value": "Europe/Lisbon",
+          "label": "Lisbon"
+        },
+        {
+          "value": "Europe/Madrid",
+          "label": "Madrid"
+        },
+        {
+          "value": "Europe/Paris",
+          "label": "Paris"
+        },
+        {
+          "value": "Europe/Berlin",
+          "label": "Berlin"
+        },
+        {
+          "value": "Europe/Amsterdam",
+          "label": "Amsterdam"
+        },
+        {
+          "value": "Europe/Stockholm",
+          "label": "Stockholm"
+        },
+        {
+          "value": "Europe/Oslo",
+          "label": "Oslo"
+        },
+        {
+          "value": "Europe/Warsaw",
+          "label": "Warsaw"
+        },
+        {
+          "value": "Europe/Prague",
+          "label": "Prague"
+        },
+        {
+          "value": "Europe/Kyiv",
+          "label": "Kyiv"
+        },
+        {
+          "value": "Europe/Moscow",
+          "label": "Moscow"
+        },
+        {
+          "value": "Europe/Athens",
+          "label": "Athens"
+        },
+        {
+          "value": "Africa/Cairo",
+          "label": "Cairo"
+        },
+        {
+          "value": "Africa/Lagos",
+          "label": "Lagos"
+        },
+        {
+          "value": "Africa/Nairobi",
+          "label": "Nairobi"
+        },
+        {
+          "value": "Africa/Johannesburg",
+          "label": "Johannesburg"
+        },
+        {
+          "value": "Asia/Jerusalem",
+          "label": "Jerusalem"
+        },
+        {
+          "value": "Asia/Dubai",
+          "label": "Dubai"
+        },
+        {
+          "value": "Asia/Karachi",
+          "label": "Karachi"
+        },
+        {
+          "value": "Asia/Kolkata",
+          "label": "Kolkata"
+        },
+        {
+          "value": "Asia/Dhaka",
+          "label": "Dhaka"
+        },
+        {
+          "value": "Asia/Bangkok",
+          "label": "Bangkok"
+        },
+        {
+          "value": "Asia/Jakarta",
+          "label": "Jakarta"
+        },
+        {
+          "value": "Asia/Singapore",
+          "label": "Singapore"
+        },
+        {
+          "value": "Asia/Hong_Kong",
+          "label": "Hong Kong"
+        },
+        {
+          "value": "Asia/Shanghai",
+          "label": "Shanghai"
+        },
+        {
+          "value": "Asia/Taipei",
+          "label": "Taipei"
+        },
+        {
+          "value": "Asia/Seoul",
+          "label": "Seoul"
+        },
+        {
+          "value": "Asia/Tokyo",
+          "label": "Tokyo"
+        },
+        {
+          "value": "Australia/Perth",
+          "label": "Perth"
+        },
+        {
+          "value": "Australia/Sydney",
+          "label": "Sydney"
+        },
+        {
+          "value": "Pacific/Auckland",
+          "label": "Auckland"
+        },
+        {
+          "value": "America/St_Johns",
+          "label": "St. John's"
+        },
+        {
+          "value": "America/Halifax",
+          "label": "Halifax"
+        },
+        {
+          "value": "America/New_York",
+          "label": "New York"
+        },
+        {
+          "value": "America/Toronto",
+          "label": "Toronto"
+        },
+        {
+          "value": "America/Chicago",
+          "label": "Chicago"
+        },
+        {
+          "value": "America/Mexico_City",
+          "label": "Mexico City"
+        },
+        {
+          "value": "America/Bogota",
+          "label": "Bogota"
+        },
+        {
+          "value": "America/Sao_Paulo",
+          "label": "Sao Paulo"
+        },
+        {
+          "value": "America/Denver",
+          "label": "Denver"
+        },
+        {
+          "value": "America/Phoenix",
+          "label": "Phoenix"
+        },
+        {
+          "value": "America/Los_Angeles",
+          "label": "Los Angeles"
+        },
+        {
+          "value": "America/Vancouver",
+          "label": "Vancouver"
+        },
+        {
+          "value": "UTC",
+          "label": "UTC"
+        }
+      ]
+    },
+    {
+      "key": "use24h",
+      "label": "24-Hour Clock",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "workStart",
+      "label": "Working Hours Start",
+      "type": "range",
+      "default": 9,
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "h"
+    },
+    {
+      "key": "workEnd",
+      "label": "Working Hours End",
+      "type": "range",
+      "default": 18,
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "h"
+    },
+    {
+      "key": "includeSelf",
+      "label": "Count My Own Hours",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "showStrip",
+      "label": "Show Overlap Timeline",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}

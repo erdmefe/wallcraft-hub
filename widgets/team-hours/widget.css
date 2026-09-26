@@ -1,0 +1,373 @@
+﻿/* =========================================================================
+   WallCraft â€” Team Hours (timezone bridge) widget
+   -------------------------------------------------------------------------
+   â€¢ Every selector is namespaced under .tz-* (zero global CSS pollution).
+   â€¢ Colours / fonts / radius come from WallCraft theme tokens, so the card
+     adapts to all wrapper themes.
+   â€¢ .tz-shell is the size container: font sizes and the compact breakpoints
+     scale with the real widget size (1080p badge -> 4K panel).
+   ========================================================================= */
+
+.tz-shell {
+  container: tz / size;
+  width: 100%;
+  height: 100%;
+}
+
+.tz-root {
+  /* Aliases for the host theme tokens with sane fallbacks. Declared on our own
+     element so they resolve against whatever the active wrapper provides.
+     Note: --wc-theme-* are substituted on :root by the runtime, so any
+     --theme-* override set by the wrapper element is read here first. */
+  --tz-accent: var(--theme-accent, var(--wc-theme-primary, #38bdf8));
+  --tz-text: var(--wc-theme-text-main, var(--text-primary, #ffffff));
+  --tz-sub: var(--wc-theme-text-sub, var(--text-secondary, rgba(255, 255, 255, 0.62)));
+  --tz-surface: var(--wc-theme-surface, rgba(255, 255, 255, 0.05));
+  --tz-border: var(--theme-pill-border, var(--wc-theme-surface-border, rgba(255, 255, 255, 0.12)));
+  --tz-pill: var(--theme-pill-bg, var(--wc-theme-btn-bg, rgba(255, 255, 255, 0.08)));
+  --tz-radius: var(--theme-pill-radius, var(--wc-theme-radius-btn, 8px));
+  --tz-font: var(--wc-font-primary, var(--font-primary, 'Inter', 'Segoe UI', sans-serif));
+  --tz-mono: var(--wc-font-mono, var(--font-mono, 'JetBrains Mono', ui-monospace, monospace));
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.65rem 0.8rem 0.55rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.3rem;
+  font-family: var(--tz-font);
+  color: var(--tz-text);
+  overflow: hidden;
+}
+
+.tz-root *,
+.tz-root *::before,
+.tz-root *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------- header -------------------------------- */
+
+.tz-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.tz-head-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tz-head-label {
+  font-size: 10px;
+  font-size: clamp(9px, 4.1cqh, 14px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--tz-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tz-head-zone {
+  font-family: var(--tz-mono);
+  font-size: 9px;
+  font-size: clamp(8px, 3.4cqh, 12px);
+  letter-spacing: 0.04em;
+  color: var(--tz-accent);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tz-head-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  min-width: 0;
+}
+
+.tz-self-time {
+  font-family: var(--tz-mono);
+  font-size: 20px;
+  font-size: clamp(16px, 9.2cqh, 34px);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tz-self-date {
+  font-size: 9px;
+  font-size: clamp(8px, 3.5cqh, 12px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--tz-sub);
+  white-space: nowrap;
+}
+
+/* ---------------------------------- rows --------------------------------- */
+
+.tz-rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  gap: clamp(3px, 2cqh, 14px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tz-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  padding: 3px 6px;
+  padding: clamp(2px, 1.3cqh, 8px) 6px;
+  border-radius: var(--tz-radius);
+  background: var(--tz-surface);
+}
+
+.tz-row-name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.tz-city {
+  font-size: 11px;
+  font-size: clamp(10px, 4.9cqh, 19px);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tz-weekday {
+  font-size: 8.5px;
+  font-size: clamp(7.5px, 3.5cqh, 11px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tz-sub);
+  white-space: nowrap;
+}
+
+.tz-weekday[data-shift='1'] {
+  color: var(--tz-accent);
+}
+
+.tz-weekday[data-shift='-1'] {
+  opacity: 0.55;
+}
+
+.tz-diff {
+  font-family: var(--tz-mono);
+  font-size: 9px;
+  font-size: clamp(7.5px, 3.5cqh, 11.5px);
+  font-weight: 600;
+  color: var(--tz-sub);
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: var(--tz-pill);
+  white-space: nowrap;
+}
+
+.tz-time {
+  font-family: var(--tz-mono);
+  font-size: 15px;
+  font-size: clamp(12px, 6.6cqh, 30px);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tz-phase-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(10px, 4.4cqh, 15px);
+  height: clamp(10px, 4.4cqh, 15px);
+  flex: 0 0 auto;
+}
+
+.tz-phase {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tz-phase-sun {
+  fill: var(--tz-accent);
+  color: var(--tz-accent);
+}
+
+.tz-phase-moon {
+  fill: var(--tz-sub);
+  color: var(--tz-sub);
+}
+
+.tz-rows-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 10px;
+  font-size: clamp(9px, 4.2cqh, 14px);
+  color: var(--tz-sub);
+  text-align: center;
+  letter-spacing: 0.04em;
+  padding: 0 0.5rem;
+}
+
+/* -------------------------------- timeline ------------------------------- */
+
+.tz-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.tz-strip-axis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--tz-mono);
+  font-size: 8px;
+  font-size: clamp(7px, 3.2cqh, 11px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--tz-sub);
+  opacity: 0.75;
+}
+
+.tz-strip-track {
+  position: relative;
+  height: 22px;
+  height: clamp(20px, 9.5cqh, 40px);
+  border-radius: 5px;
+  background: var(--tz-pill);
+  overflow: hidden;
+}
+
+.tz-track-grid {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--tz-border) 0 1px,
+    transparent 1px 25%
+  );
+  opacity: 0.5;
+}
+
+.tz-track-bars,
+.tz-track-overlap {
+  position: absolute;
+  inset: 0;
+}
+
+.tz-bar {
+  position: absolute;
+  border-radius: 2px;
+  background: var(--tz-accent);
+  opacity: 0.32;
+}
+
+.tz-overlap-seg {
+  position: absolute;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--tz-accent);
+  color: var(--tz-accent);
+  box-shadow: 0 0 14px -4px currentColor;
+}
+
+.tz-track-now {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--tz-text);
+  opacity: 0.85;
+}
+
+.tz-track-now::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--tz-text);
+}
+
+.tz-note {
+  display: flex;
+  align-items: center;
+  font-size: 9px;
+  font-size: clamp(8px, 3.7cqh, 13px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--tz-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 11px;
+}
+
+.tz-note.is-live {
+  color: var(--tz-accent);
+}
+
+/* --------------------- container-size responsiveness --------------------- */
+
+@container tz (max-height: 230px) {
+  .tz-root {
+    padding: 0.5rem 0.65rem;
+    gap: 0.22rem;
+  }
+
+  .tz-head-zone {
+    display: none;
+  }
+
+  .tz-strip-axis {
+    display: none;
+  }
+
+  .tz-strip-track {
+    height: 17px;
+  }
+
+  .tz-strip {
+    gap: 2px;
+  }
+}
+
+@container tz (max-height: 150px) {
+  .tz-strip,
+  .tz-weekday,
+  .tz-self-date {
+    display: none;
+  }
+}
+
+@container tz (max-width: 250px) {
+  .tz-weekday {
+    display: none;
+  }
+}
+
