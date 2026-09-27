@@ -1,0 +1,70 @@
+{
+  "id": "aurora-boralis-2",
+  "type": "shader",
+  "title": "Aurora Boralis 2",
+  "author": "Bunny",
+  "version": "1.0.0",
+  "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+  "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+  "tags": [
+    "shader"
+  ],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "speed": 0.2,
+    "intensity": 1.1,
+    "color1": "#0d5947",
+    "color2": "#2c7d62",
+    "accentColor": "#00a5c2",
+    "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\nfloat vnoise(vec2 p){\n    vec2 i = floor(p), f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    return mix(mix(hash21(i),                hash21(i + vec2(1.0, 0.0)), f.x),\n               mix(hash21(i + vec2(0.0,1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);\n}\nfloat curtain(vec2 q, float h, float seed, float t, float b0, float b1){\n    float x = q.x * 1.15\n            + 0.30 * sin(h * 1.30 + t * 0.55 + seed)\n            + 0.14 * sin(h * 2.90 - t * 0.41 + seed * 1.7);\n    float w    = sin(x * 3.4 + 1.2 * sin(x * 1.3 + t * 0.30 + seed));\n    float u    = 0.5 + 0.5 * w;\n    float body = u * u * (0.35 + 0.65 * u);\n    float haze = 0.30 + 0.70 * (0.5 + 0.5 * sin(x * 1.7 - 0.6));\n    float rays = 0.70 + 0.30 * sin(x * 20.0\n                 + 5.0 * vnoise(vec2(q.x * 2.0, h * 0.35 + t * 0.20)));\n    float gap  = 0.28 + 0.72 * smoothstep(-0.35, 0.55,\n                     sin(q.x * 0.85 + seed * 3.1 + t * 0.13));\n    float vmask = smoothstep(b0, b0 + 0.22, h) * (1.0 - smoothstep(b1, b1 + 0.55, h));\n    return (body * 0.75 + haze * 0.25) * rays * gap * vmask;\n}\nfloat starfield(vec2 p, float t){\n    float s = 0.0;\n    for (int i = 0; i < 2; i++){\n        float fi = float(i);\n        vec2  q  = p * (34.0 + fi * 52.0);\n        q.y += t * (0.35 + fi * 0.50);\n        vec2  id = floor(q), f = fract(q) - 0.5;\n        float h  = hash21(id + fi * 19.7);\n        if (h > 0.965){\n            vec2  o  = vec2(hash21(id + 3.17), hash21(id + 7.71)) - 0.5;\n            float d  = length(f - o * 0.55);\n            float tw = 0.5 + 0.5 * sin(t * (1.2 + h * 5.0) + h * 40.0);\n            s += (1.0 - smoothstep(0.0, 0.085, d)) * tw * (0.55 + 0.45 * fi);\n        }\n    }\n    return s;\n}\nfloat ridge(float x, float sd){\n    return 0.135 + 0.072 * sin(x * 1.7 + sd)\n                  + 0.042 * sin(x * 3.3 - sd * 2.0)\n                  + 0.022 * sin(x * 6.1 + sd * 3.0);\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float au  = u_audio_bass;\n\n    float HZ = -0.42;                     // horizon height in p units\n    float h = p.y - HZ;                   // height above the horizon\n    vec2  q = vec2(p.x, h);\n\n    vec3 col = mix(vec3(0.030, 0.055, 0.105), vec3(0.006, 0.014, 0.040),\n                   smoothstep(0.0, 1.15, h));\n    col += vec3(0.82, 0.88, 1.0) * starfield(q, t) * 0.9 * smoothstep(0.0, 0.30, h);\n\n    vec3 aur = vec3(0.0);\n    for (int i = 0; i < 3; i++){\n        float fi   = float(i);\n        float c    = curtain(q, h, fi * 2.7, t + fi * 1.2, 0.02 + fi * 0.07, 0.62 + fi * 0.22);\n        vec3  tint = mix(u_color1, u_accent, clamp(0.10 + fi * 0.40, 0.0, 1.0));\n        aur += tint * c * (1.0 - fi * 0.16);\n    }\n    aur *= u_intensity * (1.0 + au * 0.9);\n    col += aur * 0.36 + aur * aur * 0.18;\n\n    vec2  mp = p - vec2(0.66, HZ + 0.86);\n    float md = length(mp);\n    col += vec3(1.00, 0.97, 0.90) * (1.0 - smoothstep(0.028, 0.034, md));\n    col += vec3(0.55, 0.70, 1.00) * 0.045 / (0.02 + md * md * 20.0);\n\n    float r1 = HZ + ridge(p.x, 1.7) * 0.75;\n    float r2 = HZ + ridge(p.x, 4.1) * 0.45;\n    if (h < r1){\n        col = mix(col, vec3(0.030, 0.045, 0.085), 0.88);\n        col += u_color1 * 0.10 * exp(-max(r1 - h, 0.0) * 26.0);\n    }\n    if (h < r2) col = mix(col, vec3(0.010, 0.016, 0.032), 0.92);\n\n    if (h < 0.0){\n        float d = -h;\n        vec2  rp = vec2(p.x + 0.016 * sin(d * 34.0 - t * 1.5)\n                             + 0.010 * sin(d * 71.0 + t * 1.1), d * 1.5);\n        float refl = curtain(rp, rp.y, 2.7, t + 1.2, 0.04, 0.70)\n                   + 0.65 * curtain(rp, rp.y, 5.4, t + 2.4, 0.00, 0.45);\n        vec3 wat = vec3(0.006, 0.014, 0.032)\n                 + u_color1 * refl * 0.42 * (1.0 - smoothstep(0.0, 0.62, d));\n        float mr = -ridge(p.x, 1.7) * 0.75;\n        wat = mix(wat, vec3(0.012, 0.018, 0.036),\n                  1.0 - smoothstep(0.0, 0.012, abs(d - abs(mr))));\n        col = mix(col, wat, smoothstep(0.0, 0.006, d));\n    }\n\n    col += u_color1 * 0.030 * exp(-abs(h) * 30.0);\n    col *= 1.0 - 0.16 * dot(p * 0.55, p * 0.55);\n    col  = pow(max(col, 0.0), vec3(0.88));\n    fragColor = vec4(col, 1.0);\n}",
+    "passes": {
+      "common": "",
+      "bufferA": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferB": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferC": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferD": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "image": {
+        "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\nfloat vnoise(vec2 p){\n    vec2 i = floor(p), f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    return mix(mix(hash21(i),                hash21(i + vec2(1.0, 0.0)), f.x),\n               mix(hash21(i + vec2(0.0,1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);\n}\nfloat curtain(vec2 q, float h, float seed, float t, float b0, float b1){\n    float x = q.x * 1.15\n            + 0.30 * sin(h * 1.30 + t * 0.55 + seed)\n            + 0.14 * sin(h * 2.90 - t * 0.41 + seed * 1.7);\n    float w    = sin(x * 3.4 + 1.2 * sin(x * 1.3 + t * 0.30 + seed));\n    float u    = 0.5 + 0.5 * w;\n    float body = u * u * (0.35 + 0.65 * u);\n    float haze = 0.30 + 0.70 * (0.5 + 0.5 * sin(x * 1.7 - 0.6));\n    float rays = 0.70 + 0.30 * sin(x * 20.0\n                 + 5.0 * vnoise(vec2(q.x * 2.0, h * 0.35 + t * 0.20)));\n    float gap  = 0.28 + 0.72 * smoothstep(-0.35, 0.55,\n                     sin(q.x * 0.85 + seed * 3.1 + t * 0.13));\n    float vmask = smoothstep(b0, b0 + 0.22, h) * (1.0 - smoothstep(b1, b1 + 0.55, h));\n    return (body * 0.75 + haze * 0.25) * rays * gap * vmask;\n}\nfloat starfield(vec2 p, float t){\n    float s = 0.0;\n    for (int i = 0; i < 2; i++){\n        float fi = float(i);\n        vec2  q  = p * (34.0 + fi * 52.0);\n        q.y += t * (0.35 + fi * 0.50);\n        vec2  id = floor(q), f = fract(q) - 0.5;\n        float h  = hash21(id + fi * 19.7);\n        if (h > 0.965){\n            vec2  o  = vec2(hash21(id + 3.17), hash21(id + 7.71)) - 0.5;\n            float d  = length(f - o * 0.55);\n            float tw = 0.5 + 0.5 * sin(t * (1.2 + h * 5.0) + h * 40.0);\n            s += (1.0 - smoothstep(0.0, 0.085, d)) * tw * (0.55 + 0.45 * fi);\n        }\n    }\n    return s;\n}\nfloat ridge(float x, float sd){\n    return 0.135 + 0.072 * sin(x * 1.7 + sd)\n                  + 0.042 * sin(x * 3.3 - sd * 2.0)\n                  + 0.022 * sin(x * 6.1 + sd * 3.0);\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float au  = u_audio_bass;\n\n    float HZ = -0.42;                     // horizon height in p units\n    float h = p.y - HZ;                   // height above the horizon\n    vec2  q = vec2(p.x, h);\n\n    vec3 col = mix(vec3(0.030, 0.055, 0.105), vec3(0.006, 0.014, 0.040),\n                   smoothstep(0.0, 1.15, h));\n    col += vec3(0.82, 0.88, 1.0) * starfield(q, t) * 0.9 * smoothstep(0.0, 0.30, h);\n\n    vec3 aur = vec3(0.0);\n    for (int i = 0; i < 3; i++){\n        float fi   = float(i);\n        float c    = curtain(q, h, fi * 2.7, t + fi * 1.2, 0.02 + fi * 0.07, 0.62 + fi * 0.22);\n        vec3  tint = mix(u_color1, u_accent, clamp(0.10 + fi * 0.40, 0.0, 1.0));\n        aur += tint * c * (1.0 - fi * 0.16);\n    }\n    aur *= u_intensity * (1.0 + au * 0.9);\n    col += aur * 0.36 + aur * aur * 0.18;\n\n    vec2  mp = p - vec2(0.66, HZ + 0.86);\n    float md = length(mp);\n    col += vec3(1.00, 0.97, 0.90) * (1.0 - smoothstep(0.028, 0.034, md));\n    col += vec3(0.55, 0.70, 1.00) * 0.045 / (0.02 + md * md * 20.0);\n\n    float r1 = HZ + ridge(p.x, 1.7) * 0.75;\n    float r2 = HZ + ridge(p.x, 4.1) * 0.45;\n    if (h < r1){\n        col = mix(col, vec3(0.030, 0.045, 0.085), 0.88);\n        col += u_color1 * 0.10 * exp(-max(r1 - h, 0.0) * 26.0);\n    }\n    if (h < r2) col = mix(col, vec3(0.010, 0.016, 0.032), 0.92);\n\n    if (h < 0.0){\n        float d = -h;\n        vec2  rp = vec2(p.x + 0.016 * sin(d * 34.0 - t * 1.5)\n                             + 0.010 * sin(d * 71.0 + t * 1.1), d * 1.5);\n        float refl = curtain(rp, rp.y, 2.7, t + 1.2, 0.04, 0.70)\n                   + 0.65 * curtain(rp, rp.y, 5.4, t + 2.4, 0.00, 0.45);\n        vec3 wat = vec3(0.006, 0.014, 0.032)\n                 + u_color1 * refl * 0.42 * (1.0 - smoothstep(0.0, 0.62, d));\n        float mr = -ridge(p.x, 1.7) * 0.75;\n        wat = mix(wat, vec3(0.012, 0.018, 0.036),\n                  1.0 - smoothstep(0.0, 0.012, abs(d - abs(mr))));\n        col = mix(col, wat, smoothstep(0.0, 0.006, d));\n    }\n\n    col += u_color1 * 0.030 * exp(-abs(h) * 30.0);\n    col *= 1.0 - 0.16 * dot(p * 0.55, p * 0.55);\n    col  = pow(max(col, 0.0), vec3(0.88));\n    fragColor = vec4(col, 1.0);\n}",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    }
+  }
+}
