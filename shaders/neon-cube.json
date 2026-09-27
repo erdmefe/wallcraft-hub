@@ -1,0 +1,70 @@
+{
+  "id": "neon-cube",
+  "type": "shader",
+  "title": "Neon Cube",
+  "author": "Bunny",
+  "version": "1.0.0",
+  "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+  "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+  "tags": [
+    "shader"
+  ],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "speed": 1,
+    "intensity": 1.8,
+    "color1": "#0d5947",
+    "color2": "#2c7d62",
+    "accentColor": "#00a5c2",
+    "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\nfloat vnoise(vec2 p){\n    vec2 i = floor(p), f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    return mix(mix(hash21(i),                hash21(i + vec2(1.0, 0.0)), f.x),\n               mix(hash21(i + vec2(0.0,1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);\n}\nfloat fbm3(vec2 p){\n    float v = 0.0, a = 0.5;\n    for (int i = 0; i < 3; i++){ v += a * vnoise(p); p = p * 2.07 + 11.3; a *= 0.5; }\n    return v;\n}\n// 32-band spectrum read with CONSTANT indices only -> valid GLSL ES 1.00\nfloat spec(float a){\n    float b1 = u_audio_spectrum[1],  b2 = u_audio_spectrum[5];\n    float b3 = u_audio_spectrum[9],  b4 = u_audio_spectrum[14];\n    float b5 = u_audio_spectrum[20], b6 = u_audio_spectrum[27];\n    float x = fract(a) * 6.0;\n    float i = floor(x);\n    float f = x - i;  f = f * f * (3.0 - 2.0 * f);\n    if      (i < 0.5) return mix(b1, b2, f);\n    else if (i < 1.5) return mix(b2, b3, f);\n    else if (i < 2.5) return mix(b3, b4, f);\n    else if (i < 3.5) return mix(b4, b5, f);\n    else if (i < 4.5) return mix(b5, b6, f);\n    return b6;\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float r   = length(p);\n    float a   = atan(p.y, p.x) / 6.28318531;\n\n    vec2 q = p * 1.6;\n    vec2 w = vec2(fbm3(q + vec2(0.0, t * 0.05)), fbm3(q + vec2(5.2, -t * 0.04)));\n    float n = fbm3(q + 1.8 * w + vec2(t * 0.03, 0.0));\n\n    vec3 col = vec3(0.006, 0.008, 0.022);\n    col = mix(col, u_color1 * 0.35, smoothstep(0.35, 0.85, n) * 0.85);\n    col = mix(col, u_color2 * 0.40, smoothstep(0.55, 0.95, n * w.x + 0.25) * 0.60);\n\n    vec2  sid = floor(p * 46.0);\n    float sh  = hash21(sid);\n    if (sh > 0.972){\n        vec2 sf = fract(p * 46.0) - 0.5;\n        vec2 so = vec2(hash21(sid + 3.17), hash21(sid + 7.71)) - 0.5;\n        col += vec3(0.85, 0.90, 1.0)\n             * (1.0 - smoothstep(0.0, 0.10, length(sf - so * 0.55)))\n             * (0.5 + 0.5 * sin(t * 2.0 + sh * 40.0)) * 0.85;\n    }\n\n    float s   = 0.5 * (spec(a - t * 0.06) + spec(a - t * 0.06 + 0.03));\n    float tgt = 0.52 + 0.26 * s + 0.06 * s * u_audio_vol\n                     + 0.030 * sin(a * 6.28318531 * 4.0 - t * 0.7);\n    float d   = abs(r - tgt);\n    float line  = exp(-d * d * 150.0);\n    float line2 = exp(-(r - tgt * 0.66) * (r - tgt * 0.66) * 260.0) * 0.38;\n    float line3 = exp(-(r - tgt * 1.34) * (r - tgt * 1.34) * 200.0) * 0.24;\n    vec3 ringCol = mix(u_color1, u_accent, 0.35 + 0.65 * s);\n    col += ringCol * (line + line2 + line3) * (0.8 + u_intensity * 0.4);\n    col += ringCol * line * line * 0.30;\n\n    float rays = 0.5 + 0.5 * sin(a * 6.28318531 * 16.0 + t * 0.5);\n    rays = rays * rays; rays = rays * rays;\n    col += u_accent * rays * exp(-abs(r - tgt) * 3.0)\n         * (0.10 + 0.60 * u_audio_treble) * 0.22;\n\n    col += mix(u_color1, u_accent, 0.5) * exp(-r * 7.0)\n         * (0.35 + 0.65 * u_audio_bass) * 0.55;\n    col += u_color2 * 0.05 * exp(-r * 2.4) * (0.5 + u_audio_mid);\n\n    col *= 1.0 - 0.24 * dot(p * 0.60, p * 0.60);\n    col  = pow(max(col, 0.0), vec3(0.88));\n    fragColor = vec4(col, 1.0);\n}",
+    "passes": {
+      "common": "",
+      "bufferA": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferB": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferC": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferD": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "image": {
+        "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\nfloat vnoise(vec2 p){\n    vec2 i = floor(p), f = fract(p);\n    f = f * f * (3.0 - 2.0 * f);\n    return mix(mix(hash21(i),                hash21(i + vec2(1.0, 0.0)), f.x),\n               mix(hash21(i + vec2(0.0,1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);\n}\nfloat fbm3(vec2 p){\n    float v = 0.0, a = 0.5;\n    for (int i = 0; i < 3; i++){ v += a * vnoise(p); p = p * 2.07 + 11.3; a *= 0.5; }\n    return v;\n}\n// 32-band spectrum read with CONSTANT indices only -> valid GLSL ES 1.00\nfloat spec(float a){\n    float b1 = u_audio_spectrum[1],  b2 = u_audio_spectrum[5];\n    float b3 = u_audio_spectrum[9],  b4 = u_audio_spectrum[14];\n    float b5 = u_audio_spectrum[20], b6 = u_audio_spectrum[27];\n    float x = fract(a) * 6.0;\n    float i = floor(x);\n    float f = x - i;  f = f * f * (3.0 - 2.0 * f);\n    if      (i < 0.5) return mix(b1, b2, f);\n    else if (i < 1.5) return mix(b2, b3, f);\n    else if (i < 2.5) return mix(b3, b4, f);\n    else if (i < 3.5) return mix(b4, b5, f);\n    else if (i < 4.5) return mix(b5, b6, f);\n    return b6;\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float r   = length(p);\n    float a   = atan(p.y, p.x) / 6.28318531;\n\n    vec2 q = p * 1.6;\n    vec2 w = vec2(fbm3(q + vec2(0.0, t * 0.05)), fbm3(q + vec2(5.2, -t * 0.04)));\n    float n = fbm3(q + 1.8 * w + vec2(t * 0.03, 0.0));\n\n    vec3 col = vec3(0.006, 0.008, 0.022);\n    col = mix(col, u_color1 * 0.35, smoothstep(0.35, 0.85, n) * 0.85);\n    col = mix(col, u_color2 * 0.40, smoothstep(0.55, 0.95, n * w.x + 0.25) * 0.60);\n\n    vec2  sid = floor(p * 46.0);\n    float sh  = hash21(sid);\n    if (sh > 0.972){\n        vec2 sf = fract(p * 46.0) - 0.5;\n        vec2 so = vec2(hash21(sid + 3.17), hash21(sid + 7.71)) - 0.5;\n        col += vec3(0.85, 0.90, 1.0)\n             * (1.0 - smoothstep(0.0, 0.10, length(sf - so * 0.55)))\n             * (0.5 + 0.5 * sin(t * 2.0 + sh * 40.0)) * 0.85;\n    }\n\n    float s   = 0.5 * (spec(a - t * 0.06) + spec(a - t * 0.06 + 0.03));\n    float tgt = 0.52 + 0.26 * s + 0.06 * s * u_audio_vol\n                     + 0.030 * sin(a * 6.28318531 * 4.0 - t * 0.7);\n    float d   = abs(r - tgt);\n    float line  = exp(-d * d * 150.0);\n    float line2 = exp(-(r - tgt * 0.66) * (r - tgt * 0.66) * 260.0) * 0.38;\n    float line3 = exp(-(r - tgt * 1.34) * (r - tgt * 1.34) * 200.0) * 0.24;\n    vec3 ringCol = mix(u_color1, u_accent, 0.35 + 0.65 * s);\n    col += ringCol * (line + line2 + line3) * (0.8 + u_intensity * 0.4);\n    col += ringCol * line * line * 0.30;\n\n    float rays = 0.5 + 0.5 * sin(a * 6.28318531 * 16.0 + t * 0.5);\n    rays = rays * rays; rays = rays * rays;\n    col += u_accent * rays * exp(-abs(r - tgt) * 3.0)\n         * (0.10 + 0.60 * u_audio_treble) * 0.22;\n\n    col += mix(u_color1, u_accent, 0.5) * exp(-r * 7.0)\n         * (0.35 + 0.65 * u_audio_bass) * 0.55;\n    col += u_color2 * 0.05 * exp(-r * 2.4) * (0.5 + u_audio_mid);\n\n    col *= 1.0 - 0.24 * dot(p * 0.60, p * 0.60);\n    col  = pow(max(col, 0.0), vec3(0.88));\n    fragColor = vec4(col, 1.0);\n}",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    }
+  }
+}
