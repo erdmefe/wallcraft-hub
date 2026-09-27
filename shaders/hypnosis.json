@@ -1,0 +1,70 @@
+{
+  "id": "hypnosis",
+  "type": "shader",
+  "title": "Hypnosis",
+  "author": "Bunny",
+  "version": "1.0.0",
+  "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+  "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+  "tags": [
+    "shader"
+  ],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "speed": 0.2,
+    "intensity": 1.1,
+    "color1": "#0d5947",
+    "color2": "#2c7d62",
+    "accentColor": "#00a5c2",
+    "code": "#define STEPS 44\nfloat tubeRadius(float z, float a, float t){\n    float ring = 0.5 + 0.5 * sin(z * 1.15 - t * 2.0);\n    float rib  = 0.5 + 0.5 * sin(a * 5.0 + t * 0.7);\n    return 1.05 + 0.13 * ring * rib + u_audio_bass * 0.10;\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  uv  = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n\n    vec3 ro = vec3(0.0, 0.0, t * 3.0);\n    vec3 rd = normalize(vec3(uv, 1.55));\n    ro.xy += (u_mouse - 0.5) * 0.30;\n\n    vec3  col = vec3(0.0);\n    float glow = 0.0, hit = 0.0, sHit = 0.0, s = 0.08;\n\n    for (int i = 0; i < STEPS; i++){\n        vec3  p = ro + rd * s;\n        float r = length(p.xy);\n        float a = atan(p.y, p.x);\n        float R = tubeRadius(p.z, a, t);\n        float d = R - r;                    // > 0 while inside the tube\n\n        if (d < 0.70){                      // skip trig when far from the wall\n            float ring = 0.5 + 0.5 * sin(p.z * 2.6 - t * 4.0);\n            ring = ring * ring * ring;\n            float rs  = 0.5 + 0.5 * sin(a * 9.0 - t * 0.6);\n            float rib = rs * rs; rib = rib * rib; rib = rib * rib;\n            float sp  = 0.5 + 0.5 * dot(p.xy / max(r, 1e-4),\n                                 vec2(cos(t * 0.40), sin(t * 0.40)));\n            float spoke = sp * sp; spoke = spoke * spoke;\n            float e = ring * 1.20 + rib * 0.45 + spoke * 0.25;\n\n            vec3  emit = mix(u_color1, u_color2, ring)\n                       + u_accent * (rib * 0.8 + spoke * 0.4);\n            float w = exp(-d * 5.0) * exp(-s * 0.13);\n            col  += emit * e * w * 0.038 * u_intensity;\n            glow += e * w;\n        }\n        if (d < 0.015){ hit = 1.0; sHit = s; break; }\n        s += max(0.035, d * 0.80);\n        if (s > 55.0) break;\n    }\n    col += u_accent * 0.10 * exp(-length(uv) * 4.5) * (1.0 + 0.6 * u_audio_treble);\n    col += vec3(0.010, 0.012, 0.030) * (0.30 + 0.25 * glow);\n    col += u_accent * hit * 0.10 * exp(-sHit * 0.35);\n    col += u_color1 * 0.05 * glow * glow * 0.35;\n    col  = pow(max(col, 0.0), vec3(0.92));\n    fragColor = vec4(col, 1.0);\n}",
+    "passes": {
+      "common": "",
+      "bufferA": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferB": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferC": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferD": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "image": {
+        "code": "#define STEPS 44\nfloat tubeRadius(float z, float a, float t){\n    float ring = 0.5 + 0.5 * sin(z * 1.15 - t * 2.0);\n    float rib  = 0.5 + 0.5 * sin(a * 5.0 + t * 0.7);\n    return 1.05 + 0.13 * ring * rib + u_audio_bass * 0.10;\n}\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  uv  = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n\n    vec3 ro = vec3(0.0, 0.0, t * 3.0);\n    vec3 rd = normalize(vec3(uv, 1.55));\n    ro.xy += (u_mouse - 0.5) * 0.30;\n\n    vec3  col = vec3(0.0);\n    float glow = 0.0, hit = 0.0, sHit = 0.0, s = 0.08;\n\n    for (int i = 0; i < STEPS; i++){\n        vec3  p = ro + rd * s;\n        float r = length(p.xy);\n        float a = atan(p.y, p.x);\n        float R = tubeRadius(p.z, a, t);\n        float d = R - r;                    // > 0 while inside the tube\n\n        if (d < 0.70){                      // skip trig when far from the wall\n            float ring = 0.5 + 0.5 * sin(p.z * 2.6 - t * 4.0);\n            ring = ring * ring * ring;\n            float rs  = 0.5 + 0.5 * sin(a * 9.0 - t * 0.6);\n            float rib = rs * rs; rib = rib * rib; rib = rib * rib;\n            float sp  = 0.5 + 0.5 * dot(p.xy / max(r, 1e-4),\n                                 vec2(cos(t * 0.40), sin(t * 0.40)));\n            float spoke = sp * sp; spoke = spoke * spoke;\n            float e = ring * 1.20 + rib * 0.45 + spoke * 0.25;\n\n            vec3  emit = mix(u_color1, u_color2, ring)\n                       + u_accent * (rib * 0.8 + spoke * 0.4);\n            float w = exp(-d * 5.0) * exp(-s * 0.13);\n            col  += emit * e * w * 0.038 * u_intensity;\n            glow += e * w;\n        }\n        if (d < 0.015){ hit = 1.0; sHit = s; break; }\n        s += max(0.035, d * 0.80);\n        if (s > 55.0) break;\n    }\n    col += u_accent * 0.10 * exp(-length(uv) * 4.5) * (1.0 + 0.6 * u_audio_treble);\n    col += vec3(0.010, 0.012, 0.030) * (0.30 + 0.25 * glow);\n    col += u_accent * hit * 0.10 * exp(-sHit * 0.35);\n    col += u_color1 * 0.05 * glow * glow * 0.35;\n    col  = pow(max(col, 0.0), vec3(0.92));\n    fragColor = vec4(col, 1.0);\n}",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    }
+  }
+}
