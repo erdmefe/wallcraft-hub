@@ -1,5 +1,39 @@
 [
   {
+    "id": "aurora-boralis-2",
+    "title": "Aurora Boralis 2",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/aurora-boralis-2.webp?t=1790548997417",
+    "shaderFile": "aurora-boralis-2.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ]
+  },
+  {
+    "id": "hypnosis",
+    "title": "Hypnosis",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/hypnosis.webp?t=1790548998187",
+    "shaderFile": "hypnosis.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ]
+  },
+  {
     "id": "liquid-mercury",
     "title": "Liquid Mercury",
     "type": "shader",
@@ -11,6 +45,40 @@
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
     "previewImage": "shaders/liquid-mercury.webp?t=1790449590273",
     "shaderFile": "liquid-mercury.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ]
+  },
+  {
+    "id": "neon-cube",
+    "title": "Neon Cube",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/neon-cube.webp?t=1790548999054",
+    "shaderFile": "neon-cube.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ]
+  },
+  {
+    "id": "retro-sythwave-2",
+    "title": "Retro Sythwave 2",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/retro-sythwave-2.webp?t=1790548999810",
+    "shaderFile": "retro-sythwave-2.json",
     "permissions": [],
     "tags": [
       "shader"
