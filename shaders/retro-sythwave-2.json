@@ -1,0 +1,70 @@
+{
+  "id": "retro-sythwave-2",
+  "type": "shader",
+  "title": "Retro Sythwave 2",
+  "author": "Bunny",
+  "version": "1.0.0",
+  "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+  "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+  "tags": [
+    "shader"
+  ],
+  "permissions": [],
+  "shaderConfig": {
+    "preset": "custom",
+    "speed": 0.2,
+    "intensity": 1.1,
+    "color1": "#0d5947",
+    "color2": "#2c7d62",
+    "accentColor": "#00a5c2",
+    "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\n\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float au  = u_audio_bass;\n\n    float HZ = 0.06;                       // horizon\n    float h  = p.y - HZ;\n\n    // ---------- sky ----------\n    vec3 col = mix(vec3(1.00, 0.42, 0.55),\n                   vec3(0.30, 0.05, 0.44), smoothstep(0.0, 0.55, h));\n    col = mix(col, vec3(0.020, 0.010, 0.100), smoothstep(0.35, 1.30, h));\n\n    // ---------- stars ----------\n    vec2  sid = floor(p * 30.0);\n    float sh  = hash21(sid);\n    if (sh > 0.962 && h > 0.25){\n        vec2 sf = fract(p * 30.0) - 0.5;\n        vec2 so = vec2(hash21(sid + 3.17), hash21(sid + 7.71)) - 0.5;\n        col += vec3(0.90, 0.95, 1.00)\n             * (1.0 - smoothstep(0.0, 0.10, length(sf - so * 0.6)))\n             * smoothstep(0.25, 0.90, h)\n             * (0.5 + 0.5 * sin(t * 2.0 + sh * 40.0));\n    }\n\n    // ---------- banded sun ----------\n    float sunR = 0.30 + au * 0.02;\n    vec2  sp   = vec2(p.x, h - 0.34);\n    float sd   = length(sp);\n    float disc = 1.0 - smoothstep(sunR - 0.006, sunR, sd);\n    float k    = smoothstep(sunR, -sunR, sp.y);              // 0 top -> 1 bottom\n    float f    = fract(sp.y * (3.0 + 15.0 * k));\n    float gapT = 0.10 + 0.60 * k;\n    float sun  = disc * smoothstep(gapT - 0.10, gapT + 0.10, f);\n    vec3  sunC = mix(vec3(1.00, 0.88, 0.30), vec3(1.00, 0.14, 0.46),\n                     smoothstep(sunR, -sunR, sp.y));\n    col = mix(col, sunC, sun);\n    col += sunC * 0.30 * exp(-max(sd - sunR, 0.0) * 5.5) * (0.5 + au);\n\n    // ---------- mountain silhouette (sky only, drawn before the grid) ------\n    float r1 = 0.075 + 0.055 * sin(p.x * 2.7 + 1.3)\n                   + 0.030 * sin(p.x * 6.1 - 0.7)\n                   + 0.016 * sin(p.x * 11.0 + 2.2);\n    float r2 = r1 * 0.55 + 0.030;\n    if (h > 0.0){\n        if (h < r1){\n            col = mix(col, vec3(0.045, 0.015, 0.100), 0.92);\n            col += u_color2 * 0.16 * exp(-max(r1 - h, 0.0) * 45.0);\n        }\n        if (h < r2) col = mix(col, vec3(0.010, 0.005, 0.045), 0.95);\n    }\n\n    // ---------- perspective grid ----------\n    if (h < 0.0){\n        float fz   = 1.0 / max(-h, 0.0012);\n        vec2  guv  = vec2(p.x * fz * 0.42, fz * 0.30 - t * 0.55);\n        vec2  gl   = abs(fract(guv) - 0.5);\n        float g    = 1.0 - smoothstep(0.0, 0.055, min(gl.x, gl.y));\n        float fade = smoothstep(0.0, 0.22, -h);\n        col = mix(col, vec3(0.055, 0.010, 0.130), fade * 0.80);\n        col += mix(u_color2, u_accent, 0.5) * g * fade * (1.7 + au * 1.4);\n        col += sunC * exp(-abs(p.x) * 2.2) * fade * (0.16 + 0.26 * g);\n    }\n\n    // ---------- CRT grade ----------\n    col *= 0.94 + 0.06 * sin(fragCoord.y * 3.14159);\n    col  = pow(max(col, 0.0), vec3(0.92));\n    col *= 1.0 - 0.22 * dot(p * 0.55, p * 0.55);\n    fragColor = vec4(col, 1.0);\n}",
+    "passes": {
+      "common": "",
+      "bufferA": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferB": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferC": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "bufferD": {
+        "code": "",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      },
+      "image": {
+        "code": "float hash21(vec2 p){\n    p = fract(p * vec2(123.34, 456.21));\n    p += dot(p, p + 45.32);\n    return fract(p.x * p.y);\n}\n\nvoid mainImage(out vec4 fragColor, in vec2 fragCoord){\n    vec2  res = u_resolution;\n    vec2  p   = (fragCoord * 2.0 - res) / min(res.x, res.y);\n    float t   = u_time * u_speed;\n    float au  = u_audio_bass;\n\n    float HZ = 0.06;                       // horizon\n    float h  = p.y - HZ;\n\n    // ---------- sky ----------\n    vec3 col = mix(vec3(1.00, 0.42, 0.55),\n                   vec3(0.30, 0.05, 0.44), smoothstep(0.0, 0.55, h));\n    col = mix(col, vec3(0.020, 0.010, 0.100), smoothstep(0.35, 1.30, h));\n\n    // ---------- stars ----------\n    vec2  sid = floor(p * 30.0);\n    float sh  = hash21(sid);\n    if (sh > 0.962 && h > 0.25){\n        vec2 sf = fract(p * 30.0) - 0.5;\n        vec2 so = vec2(hash21(sid + 3.17), hash21(sid + 7.71)) - 0.5;\n        col += vec3(0.90, 0.95, 1.00)\n             * (1.0 - smoothstep(0.0, 0.10, length(sf - so * 0.6)))\n             * smoothstep(0.25, 0.90, h)\n             * (0.5 + 0.5 * sin(t * 2.0 + sh * 40.0));\n    }\n\n    // ---------- banded sun ----------\n    float sunR = 0.30 + au * 0.02;\n    vec2  sp   = vec2(p.x, h - 0.34);\n    float sd   = length(sp);\n    float disc = 1.0 - smoothstep(sunR - 0.006, sunR, sd);\n    float k    = smoothstep(sunR, -sunR, sp.y);              // 0 top -> 1 bottom\n    float f    = fract(sp.y * (3.0 + 15.0 * k));\n    float gapT = 0.10 + 0.60 * k;\n    float sun  = disc * smoothstep(gapT - 0.10, gapT + 0.10, f);\n    vec3  sunC = mix(vec3(1.00, 0.88, 0.30), vec3(1.00, 0.14, 0.46),\n                     smoothstep(sunR, -sunR, sp.y));\n    col = mix(col, sunC, sun);\n    col += sunC * 0.30 * exp(-max(sd - sunR, 0.0) * 5.5) * (0.5 + au);\n\n    // ---------- mountain silhouette (sky only, drawn before the grid) ------\n    float r1 = 0.075 + 0.055 * sin(p.x * 2.7 + 1.3)\n                   + 0.030 * sin(p.x * 6.1 - 0.7)\n                   + 0.016 * sin(p.x * 11.0 + 2.2);\n    float r2 = r1 * 0.55 + 0.030;\n    if (h > 0.0){\n        if (h < r1){\n            col = mix(col, vec3(0.045, 0.015, 0.100), 0.92);\n            col += u_color2 * 0.16 * exp(-max(r1 - h, 0.0) * 45.0);\n        }\n        if (h < r2) col = mix(col, vec3(0.010, 0.005, 0.045), 0.95);\n    }\n\n    // ---------- perspective grid ----------\n    if (h < 0.0){\n        float fz   = 1.0 / max(-h, 0.0012);\n        vec2  guv  = vec2(p.x * fz * 0.42, fz * 0.30 - t * 0.55);\n        vec2  gl   = abs(fract(guv) - 0.5);\n        float g    = 1.0 - smoothstep(0.0, 0.055, min(gl.x, gl.y));\n        float fade = smoothstep(0.0, 0.22, -h);\n        col = mix(col, vec3(0.055, 0.010, 0.130), fade * 0.80);\n        col += mix(u_color2, u_accent, 0.5) * g * fade * (1.7 + au * 1.4);\n        col += sunC * exp(-abs(p.x) * 2.2) * fade * (0.16 + 0.26 * g);\n    }\n\n    // ---------- CRT grade ----------\n    col *= 0.94 + 0.06 * sin(fragCoord.y * 3.14159);\n    col  = pow(max(col, 0.0), vec3(0.92));\n    col *= 1.0 - 0.22 * dot(p * 0.55, p * 0.55);\n    fragColor = vec4(col, 1.0);\n}",
+        "inputs": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    }
+  }
+}
