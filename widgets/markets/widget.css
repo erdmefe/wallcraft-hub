@@ -1,0 +1,350 @@
+/* =========================================================================
+   WallCraft — Piyasa (live FX + crypto) widget
+   Theme tokens only. Scales with the real widget size via a cq size container.
+   Composition: header / hero+cards / full-width sparkline / footer
+   ========================================================================= */
+
+.px-shell {
+  container: px / size;
+  width: 100%;
+  height: 100%;
+}
+
+.px-root {
+  --px-accent: var(--theme-accent, var(--wc-theme-primary, #38bdf8));
+  --px-text: var(--wc-theme-text-main, #ffffff);
+  --px-sub: var(--wc-theme-text-sub, rgba(255, 255, 255, 0.72));
+  --px-dim: var(--wc-theme-text-muted, rgba(255, 255, 255, 0.48));
+  --px-surface: var(--wc-theme-surface, rgba(0, 0, 0, 0.2));
+  --px-border: var(--wc-theme-surface-border, rgba(255, 255, 255, 0.1));
+  --px-pill: var(--theme-pill-bg, var(--wc-theme-btn-bg, rgba(255, 255, 255, 0.06)));
+  --px-radius: var(--wc-theme-radius-btn, 12px);
+  --px-font: var(--wc-font-primary, 'Inter', system-ui, sans-serif);
+  --px-mono: var(--wc-font-mono, 'JetBrains Mono', ui-monospace, monospace);
+  --px-up: #4ade9b;
+  --px-down: #f2555a;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.55rem 0.7rem 0.45rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 0.4rem;
+  font-family: var(--px-font);
+  color: var(--px-text);
+  overflow: hidden;
+}
+
+.px-root *,
+.px-root *::before,
+.px-root *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------- header -------------------------------- */
+
+.px-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.px-label {
+  font-size: 10px;
+  font-size: clamp(9px, 4.2cqh, 19px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--px-sub);
+  white-space: nowrap;
+}
+
+.px-age {
+  font-family: var(--px-mono);
+  font-size: 9.5px;
+  font-size: clamp(8.5px, 4cqh, 17px);
+  color: var(--px-dim);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.px-age.is-stale {
+  color: var(--px-down);
+}
+
+/* ---------------------------------- body --------------------------------- */
+
+.px-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 0.5rem;
+  min-height: 0;
+}
+
+.px-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.px-hero {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.px-hero-num {
+  font-family: var(--px-mono);
+  font-size: 34px;
+  font-size: clamp(21px, 15cqh, 86px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--px-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.px-hero-pair {
+  font-family: var(--px-mono);
+  font-size: 11px;
+  font-size: clamp(9px, 4.6cqh, 20px);
+  font-weight: 600;
+  color: var(--px-dim);
+  white-space: nowrap;
+}
+
+.px-change {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.px-chip {
+  font-family: var(--px-mono);
+  font-size: 11px;
+  font-size: clamp(9px, 4.4cqh, 20px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 0.05em 0.5em;
+  border-radius: 999px;
+  background: var(--px-pill);
+  color: var(--px-dim);
+  white-space: nowrap;
+}
+
+.px-chip.is-up {
+  color: var(--px-up);
+}
+
+.px-chip.is-down {
+  color: var(--px-down);
+}
+
+.px-change-cap {
+  font-size: 9px;
+  font-size: clamp(8px, 3.6cqh, 16px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--px-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------- side ---------------------------------- */
+
+.px-side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-content: center;
+  gap: 0.3rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.px-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  max-height: 40cqh;
+  min-width: 0;
+  padding: 0.25rem 0.45rem;
+  border-radius: var(--px-radius);
+  background: var(--px-surface);
+  border: 1px solid var(--px-border);
+  overflow: hidden;
+}
+
+.px-card-cap {
+  font-size: 8.5px;
+  font-size: clamp(8px, 3.4cqh, 16px);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--px-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.px-card-num {
+  font-family: var(--px-mono);
+  font-size: 15px;
+  font-size: clamp(12px, 6.4cqh, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.px-card-sub {
+  font-family: var(--px-mono);
+  font-size: 9.5px;
+  font-size: clamp(8.5px, 3.8cqh, 17px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--px-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.px-card-sub.is-up {
+  color: var(--px-up);
+}
+
+.px-card-sub.is-down {
+  color: var(--px-down);
+}
+
+/* -------------------------------- sparkline ------------------------------ */
+
+.px-spark {
+  display: block;
+  width: 100%;
+  height: 44px;
+  height: clamp(30px, 20cqh, 130px);
+  color: var(--px-accent);
+  opacity: 0.92;
+  overflow: visible;
+}
+
+/* ---------------------------------- foot --------------------------------- */
+
+.px-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.px-src {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 9px;
+  font-size: clamp(8px, 3.6cqh, 16px);
+  color: var(--px-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.px-btn {
+  flex: 0 0 auto;
+  font-family: var(--px-font);
+  font-size: 9.5px;
+  font-size: clamp(8.5px, 3.8cqh, 17px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--px-sub);
+  background: var(--px-pill);
+  border: 1px solid var(--px-border);
+  border-radius: 999px;
+  padding: 0.15em 0.7em;
+  cursor: pointer;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+.px-btn:hover {
+  color: var(--px-text);
+  border-color: var(--px-accent);
+}
+
+.px-btn:focus-visible {
+  outline: 2px solid var(--px-accent);
+  outline-offset: 1px;
+}
+
+.px-btn[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* --------------------- container-size responsiveness --------------------- */
+
+@container px (max-height: 190px) {
+  .px-root {
+    padding: 0.4rem 0.55rem 0.35rem;
+    gap: 0.28rem;
+  }
+}
+
+/* Short widgets: two stacked cards no longer fit their own content, so lay
+   them side by side instead. Without this the coin card clips its text. */
+@container px (max-height: 200px) {
+  .px-side {
+    grid-template-rows: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+@container px (max-height: 140px) {
+  .px-spark {
+    display: none;
+  }
+
+  .px-change-cap,
+  .px-src {
+    display: none;
+  }
+}
+
+@container px (max-width: 280px) {
+  .px-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .px-side {
+    grid-template-rows: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+/* Very wide widgets: stop the content from spreading into a sparse, hard-to-read
+   band by capping the measure and centring it. */
+@container px (min-aspect-ratio: 2) {
+  .px-head,
+  .px-body,
+  .px-spark,
+  .px-foot {
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+  }
+}
