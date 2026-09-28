@@ -1,0 +1,69 @@
+{
+  "id": "storage",
+  "name": "Storage",
+  "version": "1.0.0",
+  "author": "Bunny",
+  "description": "Storage inventory for the desktop: every volume with its capacity, free space, fullness, and the physical disk behind it (NVMe SSD / SSD / HDD / removable) so you can see which drive is filling up and how fast it is.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 5,
+    "minCols": 4,
+    "minRows": 3
+  },
+  "permissions": [
+    "system-stats"
+  ],
+  "wrapper": "default",
+  "pinMode": "default",
+  "icon": "icon.png",
+  "previewImage": "preview.png",
+  "configSchema": [
+    {
+      "key": "maxVolumes",
+      "label": "Volumes Listed",
+      "type": "range",
+      "default": 4,
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "disk"
+    },
+    {
+      "key": "warnUsage",
+      "label": "Warning Level",
+      "type": "range",
+      "default": 80,
+      "min": 60,
+      "max": 98,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "key": "showModel",
+      "label": "Show Disk Model",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "sortByFree",
+      "label": "Sort by Free Space",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "refreshMinutes",
+      "label": "Refresh Interval",
+      "type": "range",
+      "default": 2,
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "min"
+    }
+  ]
+}
