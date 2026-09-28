@@ -1,0 +1,175 @@
+{
+  "id": "markets",
+  "name": "Markets",
+  "version": "1.0.0",
+  "author": "Bunny",
+  "description": "Live currency and crypto on the desktop: the selected pair's rate, its real period change, a price-history chart, a second pair and a coin with its 24h move.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 5,
+    "minCols": 4,
+    "minRows": 3
+  },
+  "permissions": [
+    "network"
+  ],
+  "wrapper": "default",
+  "pinMode": "default",
+  "icon": "icon.png",
+  "previewImage": "preview.png",
+  "configSchema": [
+    {
+      "key": "base",
+      "label": "Base Currency",
+      "type": "select",
+      "default": "USD",
+      "options": [
+        {
+          "value": "USD",
+          "label": "USD - US Dollar"
+        },
+        {
+          "value": "EUR",
+          "label": "EUR - Euro"
+        },
+        {
+          "value": "GBP",
+          "label": "GBP - British Pound"
+        },
+        {
+          "value": "CHF",
+          "label": "CHF - Swiss Franc"
+        },
+        {
+          "value": "JPY",
+          "label": "JPY - Japanese Yen"
+        }
+      ]
+    },
+    {
+      "key": "quote1",
+      "label": "Primary Quote",
+      "type": "select",
+      "default": "TRY",
+      "options": [
+        {
+          "value": "TRY",
+          "label": "TRY - Turkish Lira"
+        },
+        {
+          "value": "USD",
+          "label": "USD - US Dollar"
+        },
+        {
+          "value": "EUR",
+          "label": "EUR - Euro"
+        },
+        {
+          "value": "GBP",
+          "label": "GBP - British Pound"
+        },
+        {
+          "value": "CHF",
+          "label": "CHF - Swiss Franc"
+        },
+        {
+          "value": "JPY",
+          "label": "JPY - Japanese Yen"
+        }
+      ]
+    },
+    {
+      "key": "quote2",
+      "label": "Secondary Quote",
+      "type": "select",
+      "default": "EUR",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "USD",
+          "label": "USD"
+        },
+        {
+          "value": "EUR",
+          "label": "EUR"
+        },
+        {
+          "value": "GBP",
+          "label": "GBP"
+        },
+        {
+          "value": "CHF",
+          "label": "CHF"
+        },
+        {
+          "value": "JPY",
+          "label": "JPY"
+        }
+      ]
+    },
+    {
+      "key": "coin",
+      "label": "Crypto Coin",
+      "type": "select",
+      "default": "bitcoin",
+      "options": [
+        {
+          "value": "",
+          "label": "(none)"
+        },
+        {
+          "value": "bitcoin",
+          "label": "BTC - Bitcoin"
+        },
+        {
+          "value": "ethereum",
+          "label": "ETH - Ethereum"
+        },
+        {
+          "value": "solana",
+          "label": "SOL - Solana"
+        },
+        {
+          "value": "ripple",
+          "label": "XRP - Ripple"
+        },
+        {
+          "value": "cardano",
+          "label": "ADA - Cardano"
+        },
+        {
+          "value": "dogecoin",
+          "label": "DOGE - Dogecoin"
+        }
+      ]
+    },
+    {
+      "key": "sparkDays",
+      "label": "Chart Range (days)",
+      "type": "range",
+      "default": 30,
+      "min": 7,
+      "max": 180,
+      "step": 1,
+      "unit": "d"
+    },
+    {
+      "key": "refreshMinutes",
+      "label": "Refresh Interval",
+      "type": "range",
+      "default": 5,
+      "min": 1,
+      "max": 120,
+      "step": 1,
+      "unit": "min"
+    }
+  ]
+}
