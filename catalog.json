@@ -85,6 +85,94 @@
     ]
   },
   {
+    "id": "air-quality",
+    "dir": "air-quality",
+    "repoDirName": "air-quality",
+    "type": "widget",
+    "title": "Air Quality",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Outdoor air quality for any city: the live index, what it means, the individual pollutants (PM2.5, PM10, ozone, NO2), the UV index and the pollen count - so you know whether to open the window.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/air-quality/preview.png",
+    "icon": "widgets/air-quality/icon.png",
+    "iconImage": "widgets/air-quality/icon.png",
+    "permissions": [
+      "network"
+    ],
+    "tags": [
+      "widget"
+    ]
+  },
+  {
+    "id": "markets",
+    "dir": "markets",
+    "repoDirName": "markets",
+    "type": "widget",
+    "title": "Markets",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Live currency and crypto on the desktop: the selected pair's rate, its real period change, a price-history chart, a second pair and a coin with its 24h move.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/markets/preview.png",
+    "icon": "widgets/markets/icon.png",
+    "iconImage": "widgets/markets/icon.png",
+    "permissions": [
+      "network"
+    ],
+    "tags": [
+      "widget"
+    ]
+  },
+  {
+    "id": "sound-level",
+    "dir": "sound-level",
+    "repoDirName": "sound-level",
+    "type": "widget",
+    "title": "Sound Level",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Live sound level meter: shows the real master output level in dBFS with a peak-hold bar, and which applications are producing the sound right now.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/sound-level/preview.png",
+    "icon": "widgets/sound-level/icon.png",
+    "iconImage": "widgets/sound-level/icon.png",
+    "permissions": [
+      "audio"
+    ],
+    "tags": [
+      "widget"
+    ]
+  },
+  {
+    "id": "storage",
+    "dir": "storage",
+    "repoDirName": "storage",
+    "type": "widget",
+    "title": "Storage",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Storage inventory for the desktop: every volume with its capacity, free space, fullness, and the physical disk behind it (NVMe SSD / SSD / HDD / removable) so you can see which drive is filling up and how fast it is.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/storage/preview.png",
+    "icon": "widgets/storage/icon.png",
+    "iconImage": "widgets/storage/icon.png",
+    "permissions": [
+      "system-stats"
+    ],
+    "tags": [
+      "widget"
+    ]
+  },
+  {
     "id": "team-hours",
     "dir": "team-hours",
     "repoDirName": "team-hours",
