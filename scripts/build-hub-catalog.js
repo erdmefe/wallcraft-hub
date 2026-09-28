@@ -97,7 +97,7 @@ function buildCatalog() {
         console.warn(`[Warning] Skipping invalid shader file ${jsonFile}:`, err.message);
       }
     }
-    console.log(`     • Shaders: ${catalog.filter(i => i.type === 'shader').length} adet`);
+    console.log(`     - Shaders: ${catalog.filter(i => i.type === 'shader').length} adet`);
   }
 
   // 2. Scan Widgets & Packs
@@ -253,7 +253,7 @@ function buildCatalog() {
         }
       }
     }
-    console.log(`     • Widgets: ${catalog.filter(i => i.type === 'widget' || i.type === 'widget-pack').length} adet`);
+    console.log(`     - Widgets: ${catalog.filter(i => i.type === 'widget' || i.type === 'widget-pack').length} adet`);
   }
 
   // 3. Scan Presets
@@ -306,7 +306,7 @@ function buildCatalog() {
         console.warn(`[Warning] Skipping invalid preset file ${pFile}:`, err.message);
       }
     }
-    console.log(`     • Presets: ${catalog.filter(i => i.type === 'preset').length} adet`);
+    console.log(`     - Presets: ${catalog.filter(i => i.type === 'preset').length} adet`);
   }
 
   // 4. Safety Guard
@@ -319,7 +319,7 @@ function buildCatalog() {
   // 5. Write catalog.json
   const jsonContent = JSON.stringify(catalog, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
-  console.log(`   [✓] Toplam ${catalog.length} oge derlendi (${(Buffer.byteLength(jsonContent) / 1024).toFixed(1)} KB)`);
+  console.log(`   [OK] Toplam ${catalog.length} oge derlendi (${(Buffer.byteLength(jsonContent) / 1024).toFixed(1)} KB)`);
 }
 
 buildCatalog();
