@@ -1,0 +1,337 @@
+/* =========================================================================
+   WallCraft — Hava Kalitesi (air quality) widget
+   Theme tokens only. Scales with the real widget size via a cq size container.
+   Composition: header / index + verdict / AQI scale / pollutants / extras
+   ========================================================================= */
+
+.aq-shell {
+  container: aq / size;
+  width: 100%;
+  height: 100%;
+}
+
+.aq-root {
+  --aq-text: var(--wc-theme-text-main, #ffffff);
+  --aq-sub: var(--wc-theme-text-sub, rgba(255, 255, 255, 0.72));
+  --aq-dim: var(--wc-theme-text-muted, rgba(255, 255, 255, 0.48));
+  --aq-surface: var(--wc-theme-surface, rgba(0, 0, 0, 0.2));
+  --aq-border: var(--wc-theme-surface-border, rgba(255, 255, 255, 0.1));
+  --aq-pill: var(--theme-pill-bg, var(--wc-theme-btn-bg, rgba(255, 255, 255, 0.06)));
+  --aq-radius: var(--wc-theme-radius-btn, 12px);
+  --aq-font: var(--wc-font-primary, 'Inter', system-ui, sans-serif);
+  --aq-mono: var(--wc-font-mono, 'JetBrains Mono', ui-monospace, monospace);
+  --aq-accent: var(--theme-accent, var(--wc-theme-primary, #38bdf8));
+  /* US EPA AQI category colours */
+  --aq-good: #4ade9b;
+  --aq-moderate: #fbbf24;
+  --aq-sensitive: #fb923c;
+  --aq-unhealthy: #f2555a;
+  --aq-severe: #a855f7;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.55rem 0.7rem 0.5rem;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  align-content: center;
+  align-content: safe center;
+  gap: 0.38rem;
+  font-family: var(--aq-font);
+  color: var(--aq-text);
+  overflow: hidden;
+}
+
+.aq-root *,
+.aq-root *::before,
+.aq-root *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------- header -------------------------------- */
+
+.aq-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.aq-label {
+  font-size: 10px;
+  font-size: clamp(9px, 4.2cqh, 19px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--aq-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aq-city {
+  font-size: 10px;
+  font-size: clamp(8.5px, 3.9cqh, 16px);
+  font-weight: 600;
+  color: var(--aq-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------------------------- hero --------------------------------- */
+
+.aq-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.aq-hero-left {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.aq-index {
+  font-family: var(--aq-mono);
+  font-size: 34px;
+  font-size: clamp(21px, 15cqh, 62px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aq-index.is-good { color: var(--aq-good); }
+.aq-index.is-moderate { color: var(--aq-moderate); }
+.aq-index.is-sensitive { color: var(--aq-sensitive); }
+.aq-index.is-unhealthy { color: var(--aq-unhealthy); }
+.aq-index.is-severe { color: var(--aq-severe); }
+
+.aq-scale-cap {
+  font-size: 9px;
+  font-size: clamp(7.5px, 3.2cqh, 12px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aq-dim);
+  white-space: nowrap;
+}
+
+.aq-hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  min-width: 0;
+  text-align: right;
+}
+
+.aq-word {
+  font-size: 13px;
+  font-size: clamp(10px, 4.8cqh, 21px);
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aq-word.is-good { color: var(--aq-good); }
+.aq-word.is-moderate { color: var(--aq-moderate); }
+.aq-word.is-sensitive { color: var(--aq-sensitive); }
+.aq-word.is-unhealthy { color: var(--aq-unhealthy); }
+.aq-word.is-severe { color: var(--aq-severe); }
+
+.aq-sub {
+  font-family: var(--aq-mono);
+  font-size: 9.5px;
+  font-size: clamp(8px, 3.4cqh, 13px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--aq-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------------------------- scale -------------------------------- */
+
+.aq-scale {
+  position: relative;
+  height: 7px;
+  height: clamp(5px, 2.6cqh, 13px);
+  min-width: 0;
+  border-radius: 999px;
+  background: var(--aq-surface);
+  border: 1px solid var(--aq-border);
+  overflow: visible;
+}
+
+.aq-scale .aq-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: inherit;
+  background: var(--aq-good);
+  transition: width 0.4s ease, background-color 0.25s ease;
+  will-change: width;
+}
+
+.aq-scale .aq-fill.is-moderate { background: var(--aq-moderate); }
+.aq-scale .aq-fill.is-sensitive { background: var(--aq-sensitive); }
+.aq-scale .aq-fill.is-unhealthy { background: var(--aq-unhealthy); }
+.aq-scale .aq-fill.is-severe { background: var(--aq-severe); }
+
+.aq-marker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 0;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--aq-text);
+  transform: translateX(-1.5px);
+  will-change: left;
+}
+
+/* ------------------------------- pollutants ------------------------------- */
+
+.aq-poll {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.3rem;
+  min-width: 0;
+  min-height: 0;
+  align-content: center;
+}
+
+.aq-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+  min-height: clamp(30px, 18cqh, 64px);
+  padding: 0.25rem 0.15rem;
+  border-radius: calc(var(--aq-radius) * 0.7);
+  background: var(--aq-surface);
+  border: 1px solid var(--aq-border);
+  overflow: hidden;
+}
+
+.aq-item-cap {
+  font-size: 8.5px;
+  font-size: clamp(7.5px, 3.2cqh, 12px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--aq-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aq-item-val {
+  font-family: var(--aq-mono);
+  font-size: 12px;
+  font-size: clamp(9.5px, 4.6cqh, 20px);
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------- footer -------------------------------- */
+
+.aq-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.aq-extra {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--aq-mono);
+  font-size: 9.5px;
+  font-size: clamp(8px, 3.4cqh, 13px);
+  font-weight: 600;
+  color: var(--aq-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aq-extra .aq-hot { color: var(--aq-sensitive); }
+
+.aq-age {
+  flex: 0 0 auto;
+  font-family: var(--aq-mono);
+  font-size: 9px;
+  font-size: clamp(7.5px, 3.1cqh, 12px);
+  color: var(--aq-dim);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.aq-empty {
+  font-size: 10px;
+  font-size: clamp(8.5px, 3.7cqh, 15px);
+  color: var(--aq-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------- container-size responsiveness --------------------- */
+
+@container aq (max-height: 190px) {
+  .aq-root {
+    padding: 0.4rem 0.55rem 0.35rem;
+    gap: 0.26rem;
+  }
+}
+
+@container aq (max-height: 140px) {
+  .aq-sub,
+  .aq-age {
+    display: none;
+  }
+}
+
+@container aq (max-width: 300px) {
+  .aq-poll {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container aq (max-height: 120px) {
+  .aq-poll {
+    display: none;
+  }
+}
+
+/* Very wide widgets: keep a sane measure instead of stretching. */
+@container aq (min-aspect-ratio: 2) {
+  .aq-head,
+  .aq-hero,
+  .aq-scale,
+  .aq-poll,
+  .aq-foot {
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+  }
+}
