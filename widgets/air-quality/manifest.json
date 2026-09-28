@@ -1,0 +1,55 @@
+{
+  "id": "air-quality",
+  "name": "Air Quality",
+  "version": "1.0.0",
+  "author": "Bunny",
+  "description": "Outdoor air quality for any city: the live index, what it means, the individual pollutants (PM2.5, PM10, ozone, NO2), the UV index and the pollen count - so you know whether to open the window.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 5,
+    "minCols": 4,
+    "minRows": 3
+  },
+  "permissions": [
+    "network"
+  ],
+  "wrapper": "default",
+  "pinMode": "default",
+  "icon": "icon.png",
+  "previewImage": "preview.png",
+  "configSchema": [
+    {
+      "key": "city",
+      "label": "City (name)",
+      "type": "text",
+      "default": "Istanbul"
+    },
+    {
+      "key": "lat",
+      "label": "Latitude (overrides city)",
+      "type": "text",
+      "default": ""
+    },
+    {
+      "key": "lon",
+      "label": "Longitude (overrides city)",
+      "type": "text",
+      "default": ""
+    },
+    {
+      "key": "refreshMinutes",
+      "label": "Refresh Interval",
+      "type": "range",
+      "default": 15,
+      "min": 5,
+      "max": 180,
+      "step": 5,
+      "unit": "min"
+    }
+  ]
+}
