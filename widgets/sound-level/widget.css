@@ -1,0 +1,326 @@
+/* =========================================================================
+   WallCraft — Ses Seviyesi (live sound level meter) widget
+   Theme tokens only. Scales with the real widget size via a cq size container.
+   Composition: header / meter bar / readout / loudest-app list
+   ========================================================================= */
+
+.sl-shell {
+  container: sl / size;
+  width: 100%;
+  height: 100%;
+}
+
+.sl-root {
+  --sl-text: var(--wc-theme-text-main, #ffffff);
+  --sl-sub: var(--wc-theme-text-sub, rgba(255, 255, 255, 0.72));
+  --sl-dim: var(--wc-theme-text-muted, rgba(255, 255, 255, 0.48));
+  --sl-surface: var(--wc-theme-surface, rgba(0, 0, 0, 0.2));
+  --sl-border: var(--wc-theme-surface-border, rgba(255, 255, 255, 0.1));
+  --sl-pill: var(--theme-pill-bg, var(--wc-theme-btn-bg, rgba(255, 255, 255, 0.06)));
+  --sl-radius: var(--wc-theme-radius-btn, 12px);
+  --sl-font: var(--wc-font-primary, 'Inter', system-ui, sans-serif);
+  --sl-mono: var(--wc-font-mono, 'JetBrains Mono', ui-monospace, monospace);
+  /* level colours */
+  --sl-low: #4ade9b;
+  --sl-mid: #fbbf24;
+  --sl-high: #f2555a;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.55rem 0.7rem 0.5rem;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  align-content: center;
+  align-content: safe center;  /* when content overflows, align to top
+                                      instead of clipping the header off */
+  gap: 0.4rem;
+  font-family: var(--sl-font);
+  color: var(--sl-text);
+  overflow: hidden;
+}
+
+.sl-root *,
+.sl-root *::before,
+.sl-root *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------- header -------------------------------- */
+
+.sl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sl-label {
+  font-size: 10px;
+  font-size: clamp(9px, 4.2cqh, 18px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--sl-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sl-state {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 10px;
+  font-size: clamp(8.5px, 3.8cqh, 15px);
+  font-weight: 600;
+  color: var(--sl-dim);
+  white-space: nowrap;
+}
+
+.sl-dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--sl-dim);
+  flex: 0 0 auto;
+}
+
+/* live indicator: pulses only while real audio is arriving */
+.sl-dot.is-live {
+  background: var(--sl-low);
+  animation: sl-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes sl-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.28; }
+}
+
+/* ---------------------------------- meter -------------------------------- */
+
+.sl-meter {
+  position: relative;
+  height: 32px;
+  height: clamp(22px, 32cqh, 170px);
+  min-width: 0;
+  border-radius: var(--sl-radius);
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  overflow: hidden;
+}
+
+.sl-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  /* no radius here: the meter's own border-radius + overflow clips the fill, so a
+     3% level reads as a clean bar segment instead of a rounded sliver */
+  background: var(--sl-low);
+  transition: background-color 0.18s ease;
+  will-change: width;
+}
+
+.sl-fill.is-mid { background: var(--sl-mid); }
+.sl-fill.is-high { background: var(--sl-high); }
+
+/* peak-hold marker: a thin line that lags behind the bar and decays */
+.sl-hold {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--sl-text);
+  opacity: 0.85;
+  opacity: 0;
+  will-change: left;
+}
+
+.sl-hold.is-on { opacity: 0.8; }
+
+.sl-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sl-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--sl-text);
+  opacity: 0.14;
+}
+
+.sl-tick-label {
+  position: absolute;
+  bottom: 1px;
+  font-family: var(--sl-mono);
+  font-size: 8px;
+  font-size: clamp(7px, 2.9cqh, 11px);
+  color: var(--sl-dim);
+  transform: translateX(2px);
+  white-space: nowrap;
+}
+
+/* --------------------------------- readout -------------------------------- */
+
+.sl-read {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sl-db {
+  font-family: var(--sl-mono);
+  font-size: 22px;
+  font-size: clamp(16px, 10cqh, 44px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sl-db.is-low { color: var(--sl-low); }
+.sl-db.is-mid { color: var(--sl-mid); }
+.sl-db.is-high { color: var(--sl-high); }
+
+.sl-vol {
+  font-family: var(--sl-mono);
+  font-size: 10px;
+  font-size: clamp(8.5px, 3.7cqh, 15px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--sl-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sl-vol.is-muted { color: var(--sl-high); }
+
+/* ------------------------------- app list --------------------------------- */
+
+.sl-apps {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.22rem;
+  min-height: 0;
+  min-width: 0;
+}
+
+.sl-app {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr) auto;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.sl-app-name {
+  font-size: 9.5px;
+  font-size: clamp(8.5px, 3.6cqh, 15px);
+  font-weight: 600;
+  color: var(--sl-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sl-app-bar {
+  position: relative;
+  height: 6px;
+  height: clamp(5px, 2.4cqh, 12px);
+  min-width: 0;
+  border-radius: 999px;
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  overflow: hidden;
+}
+
+.sl-app-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--sl-low);
+  transition: background-color 0.18s ease;
+  will-change: width;
+}
+
+.sl-app-fill.is-mid { background: var(--sl-mid); }
+.sl-app-fill.is-high { background: var(--sl-high); }
+
+.sl-app-num {
+  font-family: var(--sl-mono);
+  font-size: 9px;
+  font-size: clamp(8px, 3.3cqh, 13px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--sl-dim);
+  white-space: nowrap;
+}
+
+.sl-empty {
+  font-size: 9.5px;
+  font-size: clamp(8.5px, 3.6cqh, 15px);
+  color: var(--sl-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------- container-size responsiveness --------------------- */
+
+@container sl (max-height: 190px) {
+  .sl-root {
+    padding: 0.4rem 0.55rem 0.35rem;
+    gap: 0.28rem;
+  }
+}
+
+@container sl (max-height: 140px) {
+  .sl-ticks,
+  .sl-vol {
+    display: none;
+  }
+
+  .sl-meter {
+    height: clamp(16px, 20cqh, 90px);
+  }
+}
+
+@container sl (max-height: 110px) {
+  .sl-apps {
+    display: none;
+  }
+}
+
+@container sl (max-width: 240px) {
+  .sl-app {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .sl-app-bar {
+    display: none;
+  }
+}
+
+/* Very wide widgets: keep a sane measure instead of stretching. */
+@container sl (min-aspect-ratio: 2) {
+  .sl-head,
+  .sl-meter,
+  .sl-read,
+  .sl-apps {
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+  }
+}
