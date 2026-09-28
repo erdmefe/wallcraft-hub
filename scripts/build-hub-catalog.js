@@ -50,7 +50,7 @@ function findPreviewImage(baseDir, itemId, fileList) {
 }
 
 function buildCatalog() {
-  console.log('[WallCraft Catalog Builder] Starting static catalog compilation...');
+  console.log('   [*] Statik katalog dosyasi derleniyor...');
   const catalog = [];
 
   // 1. Scan Shaders
@@ -97,7 +97,7 @@ function buildCatalog() {
         console.warn(`[Warning] Skipping invalid shader file ${jsonFile}:`, err.message);
       }
     }
-    console.log(`[OK] Processed ${catalog.filter(i => i.type === 'shader').length} shaders.`);
+    console.log(`     • Shaders: ${catalog.filter(i => i.type === 'shader').length} adet`);
   }
 
   // 2. Scan Widgets & Packs
@@ -253,7 +253,7 @@ function buildCatalog() {
         }
       }
     }
-    console.log(`[OK] Processed ${catalog.filter(i => i.type === 'widget' || i.type === 'widget-pack').length} widgets.`);
+    console.log(`     • Widgets: ${catalog.filter(i => i.type === 'widget' || i.type === 'widget-pack').length} adet`);
   }
 
   // 3. Scan Presets
@@ -306,7 +306,7 @@ function buildCatalog() {
         console.warn(`[Warning] Skipping invalid preset file ${pFile}:`, err.message);
       }
     }
-    console.log(`[OK] Processed ${catalog.filter(i => i.type === 'preset').length} presets.`);
+    console.log(`     • Presets: ${catalog.filter(i => i.type === 'preset').length} adet`);
   }
 
   // 4. Safety Guard
@@ -319,7 +319,7 @@ function buildCatalog() {
   // 5. Write catalog.json
   const jsonContent = JSON.stringify(catalog, null, 2);
   fs.writeFileSync(OUTPUT_FILE, jsonContent, 'utf8');
-  console.log(`[SUCCESS] Compiled ${catalog.length} items to ${OUTPUT_FILE} (${(Buffer.byteLength(jsonContent) / 1024).toFixed(1)} KB)`);
+  console.log(`   [✓] Toplam ${catalog.length} oge derlendi (${(Buffer.byteLength(jsonContent) / 1024).toFixed(1)} KB)`);
 }
 
 buildCatalog();

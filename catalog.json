@@ -9,7 +9,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/aurora-boralis-2.webp?t=1790548997417",
+    "previewImage": "shaders/aurora-boralis-2.webp?t=1790599515764",
     "shaderFile": "aurora-boralis-2.json",
     "permissions": [],
     "tags": [
@@ -26,7 +26,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/hypnosis.webp?t=1790548998187",
+    "previewImage": "shaders/hypnosis.webp?t=1790599516967",
     "shaderFile": "hypnosis.json",
     "permissions": [],
     "tags": [
@@ -43,7 +43,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/liquid-mercury.webp?t=1790449590273",
+    "previewImage": "shaders/liquid-mercury.webp?t=1790599517994",
     "shaderFile": "liquid-mercury.json",
     "permissions": [],
     "tags": [
@@ -60,7 +60,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/neon-cube.webp?t=1790548999054",
+    "previewImage": "shaders/neon-cube.webp?t=1790599519081",
     "shaderFile": "neon-cube.json",
     "permissions": [],
     "tags": [
@@ -77,7 +77,7 @@
     "categoryLabel": "Shader Art",
     "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
     "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
-    "previewImage": "shaders/retro-sythwave-2.webp?t=1790548999810",
+    "previewImage": "shaders/retro-sythwave-2.webp?t=1790599520171",
     "shaderFile": "retro-sythwave-2.json",
     "permissions": [],
     "tags": [
