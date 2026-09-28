@@ -1,0 +1,69 @@
+{
+  "id": "sound-level",
+  "name": "Sound Level",
+  "version": "1.0.0",
+  "author": "Bunny",
+  "description": "Live sound level meter: shows the real master output level in dBFS with a peak-hold bar, and which applications are producing the sound right now.",
+  "entry": {
+    "html": "widget.html",
+    "css": "widget.css",
+    "script": "widget.js"
+  },
+  "gridSpan": {
+    "cols": 6,
+    "rows": 5,
+    "minCols": 4,
+    "minRows": 3
+  },
+  "permissions": [
+    "audio"
+  ],
+  "wrapper": "default",
+  "pinMode": "default",
+  "icon": "icon.png",
+  "previewImage": "preview.png",
+  "configSchema": [
+    {
+      "key": "appCount",
+      "label": "Applications Listed",
+      "type": "range",
+      "default": 3,
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "app"
+    },
+    {
+      "key": "floorDb",
+      "label": "Meter Floor",
+      "type": "range",
+      "default": -60,
+      "min": -80,
+      "max": -20,
+      "step": 5,
+      "unit": "dB"
+    },
+    {
+      "key": "warnPct",
+      "label": "Warning Level",
+      "type": "range",
+      "default": 75,
+      "min": 50,
+      "max": 95,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "key": "showScale",
+      "label": "Show dBFS Scale",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "sortByLevel",
+      "label": "Sort Apps by Level",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}
