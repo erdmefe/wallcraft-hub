@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683550116-x1qgu",
   "name": "WC-Demo3 Preset",
-  "description": "",
+  "description": "Cozy ember-glow setup with zen focus, volume mixer, app rack, and audio visualizer.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:05:50.116Z",
   "accentColor": "#facc15",
@@ -526,6 +526,9 @@
           ]
         }
       }
-    }
-  }
+    },
+    "wallpaperType": "shader"
+  },
+  "previewImage": "presets/wc-demo3-preset.webp",
+  "wallpaperType": "shader"
 }

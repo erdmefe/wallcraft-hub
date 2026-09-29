@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683565204-iq74z",
   "name": "WC-Demo6 Preset",
-  "description": "",
+  "description": "Advanced financial suite with live markets, team hours, and Aurora Borealis shader.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:06:05.204Z",
   "accentColor": "#00a5c2",
@@ -528,6 +528,9 @@
         }
       },
       "customShaderId": "aurora-boralis-2"
-    }
-  }
+    },
+    "wallpaperType": "shader"
+  },
+  "previewImage": "presets/wc-demo6-preset.webp",
+  "wallpaperType": "shader"
 }

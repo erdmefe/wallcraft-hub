@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683554404-u0ga7",
   "name": "WC-Demo4 Preset",
-  "description": "",
+  "description": "Deep space cosmic nebula theme with battery hub, network monitor, and media player.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:05:54.404Z",
   "accentColor": "#ff0080",
@@ -561,6 +561,9 @@
           ]
         }
       }
-    }
-  }
+    },
+    "wallpaperType": "shader"
+  },
+  "previewImage": "presets/wc-demo4-preset.webp",
+  "wallpaperType": "shader"
 }

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683547576-arl3t",
   "name": "WC-Demo2 Preset",
-  "description": "",
+  "description": "Cyberpunk desktop dashboard with system monitor, audio visualizer, quote, and weather widgets.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:05:47.576Z",
   "accentColor": "#ff0055",
@@ -517,6 +517,9 @@
           ]
         }
       }
-    }
-  }
+    },
+    "wallpaperType": "shader"
+  },
+  "previewImage": "presets/wc-demo2-preset.webp",
+  "wallpaperType": "shader"
 }

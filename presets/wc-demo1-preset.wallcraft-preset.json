@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683542333-a7k9o",
   "name": "WC-Demo1 Preset",
-  "description": "",
+  "description": "Minimalist neon layout featuring clock, weather, and media widgets on Neon Atlas shader.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:05:42.333Z",
   "accentColor": "#00f0ff",
@@ -485,6 +485,9 @@
           ]
         }
       }
-    }
-  }
+    },
+    "wallpaperType": "shader"
+  },
+  "previewImage": "presets/wc-demo1-preset.webp",
+  "wallpaperType": "shader"
 }

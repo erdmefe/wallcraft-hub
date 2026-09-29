@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "id": "preset-custom-1790683558901-56thh",
   "name": "WC-Demo5 Preset",
-  "description": "",
+  "description": "Clean productivity setup with quick notes, mini calendar, calculator, and app rack.",
   "author": "WallCraft User",
   "createdAt": "2026-09-29T12:05:58.901Z",
   "accentColor": "#06b6d4",
@@ -524,6 +524,9 @@
         "cols": 3,
         "rows": 10
       }
-    }
-  }
+    },
+    "wallpaperType": "gradient"
+  },
+  "previewImage": "presets/wc-demo5-preset.webp",
+  "wallpaperType": "gradient"
 }
