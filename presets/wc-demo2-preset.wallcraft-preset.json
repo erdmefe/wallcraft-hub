@@ -1,0 +1,522 @@
+{
+  "$schema": "wallcraft-preset-v1",
+  "format": "wallcraft-preset",
+  "version": "1.0.0",
+  "id": "preset-custom-1790683547576-arl3t",
+  "name": "WC-Demo2 Preset",
+  "description": "",
+  "author": "WallCraft User",
+  "createdAt": "2026-09-29T12:05:47.576Z",
+  "accentColor": "#ff0055",
+  "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+  "widgetWrapperStyle": "cyber-obsidian",
+  "activeWidgets": [
+    "clock",
+    "weather",
+    "quote",
+    "system-monitor",
+    "media",
+    "audio-visualizer"
+  ],
+  "settings": {
+    "backgroundType": "shader",
+    "backgroundFit": "fill",
+    "backgroundColor": "#0a0a1a",
+    "backgroundGradient": {
+      "color1": "#0a0a1a",
+      "color2": "#1a1a3e",
+      "angle": 135
+    },
+    "backgroundImage": "",
+    "backgroundVideo": "",
+    "videoAudioEnabled": false,
+    "videoVolume": 50,
+    "widgetWrapperStyle": "cyber-obsidian",
+    "widgets": {
+      "clock": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "clockType": "digital",
+          "clockFormat": "24h",
+          "showSeconds": true,
+          "showDate": true,
+          "timeFontFamily": "default",
+          "timeFontSize": 100,
+          "timeFontWeight": "default",
+          "dateFontFamily": "default",
+          "dateFontSize": 100,
+          "dateFontWeight": "default",
+          "clockLayout": "time-top",
+          "clockAlignment": "center"
+        }
+      },
+      "weather": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "weatherAutoLocation": false,
+          "weatherCity": "NewYork",
+          "weatherUnits": "metric",
+          "weatherWindUnit": "ms",
+          "weatherUpdateInterval": 15,
+          "showCity": true,
+          "showDescription": true,
+          "showUpdated": true,
+          "showHumidity": true,
+          "showWind": true,
+          "tempFontFamily": "default",
+          "tempFontSize": 100,
+          "tempFontWeight": "default",
+          "cityFontFamily": "default",
+          "cityFontSize": 100,
+          "cityFontWeight": "default",
+          "descFontFamily": "default",
+          "descFontSize": 100,
+          "descFontWeight": "default",
+          "extraFontFamily": "default",
+          "extraFontSize": 100,
+          "extraFontWeight": "default",
+          "detailsFontFamily": "default",
+          "detailsFontSize": 100,
+          "detailsFontWeight": "default",
+          "weatherLayout": "temp-bottom",
+          "weatherAlignment": "split"
+        }
+      },
+      "quote": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "quoteInterval": 30,
+          "quoteAnimation": "fade",
+          "customQuotes": "Simplicity is the ultimate sophistication. | Leonardo da Vinci\nStay hungry, stay foolish. | Steve Jobs\nIn the middle of every difficulty lies opportunity. | Albert Einstein\nThe only way to do great work is to love what you do. | Steve Jobs\nNot all those who wander are lost. | J.R.R. Tolkien",
+          "showAuthor": true,
+          "quoteMarkStyle": "top",
+          "quoteAlignment": "center",
+          "quoteFontFamily": "default",
+          "quoteFontSize": 100,
+          "quoteFontWeight": "default",
+          "authorFontFamily": "default",
+          "authorFontSize": 100,
+          "authorFontWeight": "default"
+        }
+      },
+      "system-monitor": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "updateInterval": 2,
+          "gaugeStyle": "bars",
+          "circularColumns": "2",
+          "ringSize": 100,
+          "ringOrder": [
+            "cpu",
+            "ram",
+            "gpu",
+            "fps",
+            "disks",
+            "network"
+          ],
+          "showRingCards": true,
+          "showTitle": true,
+          "showBiosTime": true,
+          "showUptime": true,
+          "showHardwareInfo": true,
+          "systemMonitorAlignment": "center",
+          "showCpu": true,
+          "showRam": true,
+          "showGpu": true,
+          "showDisks": true,
+          "showNetwork": true,
+          "showFps": true,
+          "showSparklines": false,
+          "valuesFontFamily": "default",
+          "valuesFontSize": 100,
+          "valuesFontWeight": "default",
+          "labelsFontFamily": "default",
+          "labelsFontSize": 100,
+          "labelsFontWeight": "default",
+          "subtitlesFontFamily": "default",
+          "subtitlesFontSize": 100,
+          "subtitlesFontWeight": "default",
+          "badgesFontFamily": "default",
+          "badgesFontSize": 100,
+          "badgesFontWeight": "default"
+        }
+      },
+      "media": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "alignment": "left",
+          "titleFontFamily": "default",
+          "titleFontSize": 100,
+          "titleFontWeight": "default",
+          "artistFontFamily": "default",
+          "artistFontSize": 100,
+          "artistFontWeight": "default",
+          "progressBarThickness": 4,
+          "coverShape": "rounded",
+          "coverSize": 64,
+          "showTitle": true,
+          "showArtist": true,
+          "buttonStyle": "default"
+        }
+      },
+      "audio-visualizer": {
+        "enabled": true,
+        "visible": true,
+        "config": {
+          "visualizerStyle": "radial",
+          "colorPalette": "theme",
+          "channelLayout": "mirror",
+          "barCount": 48,
+          "sensitivity": 15,
+          "smoothing": 82,
+          "bassPulse": true,
+          "bassScaleIntensity": "dynamic",
+          "visualizerScale": "fill",
+          "particleField": false,
+          "transparentBg": false,
+          "glowIntensity": "medium",
+          "showTrackInfo": false,
+          "showCoverArt": false,
+          "showQuickControls": false,
+          "idleAnimation": false,
+          "showPeakCaps": false,
+          "barThickness": 100,
+          "barCornerStyle": "rounded",
+          "visualizerAlignment": "center",
+          "titleFontFamily": "default",
+          "titleFontSize": 100,
+          "titleFontWeight": "default",
+          "artistFontFamily": "default",
+          "artistFontSize": 100,
+          "artistFontWeight": "default",
+          "wrapperStyle": "none"
+        }
+      },
+      "zen-focus": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "focusDuration": 25,
+          "shortBreakDuration": 5,
+          "longBreakDuration": 15,
+          "longBreakInterval": 4,
+          "autoStartBreaks": false,
+          "autoStartFocus": false,
+          "soundNotification": true,
+          "showSessionCount": true,
+          "stopwatchShowMilliseconds": false,
+          "zenAlignment": "center",
+          "timerFontFamily": "default",
+          "timerFontSize": 100,
+          "timerFontWeight": "default",
+          "statusFontFamily": "default",
+          "statusFontSize": 100,
+          "statusFontWeight": "default",
+          "streaksFontFamily": "default",
+          "streaksFontSize": 100,
+          "streaksFontWeight": "default"
+        }
+      },
+      "quick-notes": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "defaultTab": "tasks",
+          "fontSize": "medium",
+          "showCompletedTasks": true,
+          "tabsFontFamily": "default",
+          "tabsFontSize": 100,
+          "tabsFontWeight": "default",
+          "tasksFontFamily": "default",
+          "tasksFontSize": 100,
+          "tasksFontWeight": "default",
+          "notesFontFamily": "default",
+          "notesFontSize": 100,
+          "notesFontWeight": "default",
+          "qnAlignment": "left"
+        }
+      },
+      "photo-frame": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "sourceType": "unsplash",
+          "imagePool": [],
+          "transitionEffect": "ken-burns",
+          "slideshowInterval": 30,
+          "slideshowShuffle": false,
+          "showCaption": true,
+          "showControls": true,
+          "photoAlignment": "split",
+          "captionFontFamily": "default",
+          "captionFontSize": 100,
+          "captionFontWeight": "default",
+          "metaFontFamily": "default",
+          "metaFontSize": 100,
+          "metaFontWeight": "default"
+        }
+      },
+      "network-monitor": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "speedUnit": "bits",
+          "bandwidthLayout": "horizontal",
+          "networkAlignment": "split",
+          "speedFontFamily": "default",
+          "speedFontSize": 100,
+          "speedFontWeight": "default",
+          "detailsFontFamily": "default",
+          "detailsFontSize": 100,
+          "detailsFontWeight": "default",
+          "showHeader": true,
+          "showPing": true,
+          "showConnectionDetails": true,
+          "showSpeedCards": true,
+          "showSparkline": true,
+          "showTotalUsage": true,
+          "usageFontFamily": "default",
+          "usageFontSize": 100,
+          "usageFontWeight": "default",
+          "pingInterval": 5
+        }
+      },
+      "battery-hub": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "batteryOrientation": "horizontal",
+          "batteryAlignment": "center",
+          "showSourceTitle": true,
+          "showEstimatedTime": true,
+          "showPercentage": true,
+          "chargeAnimation": true,
+          "showStatsCards": true,
+          "showSourceCard": true,
+          "showHealthCard": true,
+          "levelFontFamily": "default",
+          "levelFontSize": 100,
+          "levelFontWeight": "default",
+          "detailsFontFamily": "default",
+          "detailsFontSize": 100,
+          "detailsFontWeight": "default",
+          "testMode": "none",
+          "testBatteryLevel": 85
+        }
+      },
+      "mini-calendar": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "startOfWeek": "monday",
+          "showAgenda": true,
+          "highlightWeekends": true
+        }
+      },
+      "app-rack": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "layoutStyle": "dock",
+          "gridColumns": "auto",
+          "rackAlignment": "center",
+          "iconSize": "medium",
+          "labelMode": "hover",
+          "enableSearch": false,
+          "glowEffect": true,
+          "clickAnimation": "bounce",
+          "labelsFontFamily": "default",
+          "labelsFontSize": 100,
+          "labelsFontWeight": "default",
+          "uiFontFamily": "default",
+          "uiFontSize": 100,
+          "uiFontWeight": "default",
+          "editButtonsOnlyInEditMode": true
+        }
+      },
+      "discord-voice": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "showDisconnectBtn": true,
+          "maxVisibleAvatars": "8"
+        }
+      },
+      "calculator": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "defaultMode": "standard",
+          "angleUnit": "deg",
+          "keepHistory": true,
+          "calcAlignment": "right",
+          "resultFontFamily": "default",
+          "resultFontSize": 100,
+          "resultFontWeight": "default",
+          "expressionFontFamily": "default",
+          "expressionFontSize": 100,
+          "expressionFontWeight": "default",
+          "keypadFontFamily": "default",
+          "keypadFontSize": 100,
+          "keypadFontWeight": "default"
+        }
+      },
+      "volume-mixer": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "showMaster": true,
+          "showAppMixer": true,
+          "compactMode": false,
+          "showPeakMeter": true,
+          "showAppCount": true,
+          "showIcons": true,
+          "volumeAlignment": "left",
+          "deviceFontFamily": "default",
+          "deviceFontSize": 100,
+          "deviceFontWeight": "default",
+          "appFontFamily": "default",
+          "appFontSize": 100,
+          "appFontWeight": "default",
+          "sliderColorMode": "theme",
+          "customSliderColor": "#00f0ff"
+        }
+      },
+      "music": {
+        "enabled": false,
+        "visible": false,
+        "config": {
+          "alignment": "left",
+          "titleFontFamily": "default",
+          "titleFontSize": 100,
+          "titleFontWeight": "default",
+          "artistFontFamily": "default",
+          "artistFontSize": 100,
+          "artistFontWeight": "default",
+          "progressBarThickness": 4,
+          "coverShape": "rounded",
+          "coverSize": 64,
+          "showTitle": true,
+          "showArtist": true,
+          "buttonStyle": "default"
+        }
+      }
+    },
+    "widgetPositions": {
+      "weather": {
+        "x": 14.583333333333334,
+        "y": 45.833333333333336
+      },
+      "system-monitor": {
+        "x": 89.58333333333334,
+        "y": 16.666666666666668
+      },
+      "media": {
+        "x": 22.916666666666668,
+        "y": 29.166666666666668
+      },
+      "quote": {
+        "x": 20.833333333333336,
+        "y": 93.75
+      },
+      "clock": {
+        "x": 16.666666666666668,
+        "y": 12.5
+      },
+      "audio-visualizer": {
+        "x": 87.5,
+        "y": 79.16666666666667
+      }
+    },
+    "widgetSpans": {
+      "weather": {
+        "cols": 5,
+        "rows": 4
+      },
+      "system-monitor": {
+        "cols": 5,
+        "rows": 8
+      },
+      "media": {
+        "cols": 5,
+        "rows": 4
+      },
+      "quote": {
+        "cols": 10,
+        "rows": 3
+      },
+      "audio-visualizer": {
+        "cols": 6,
+        "rows": 10
+      }
+    },
+    "shaderConfig": {
+      "preset": "quantum-waves",
+      "speed": 1,
+      "intensity": 1.2,
+      "audioReactive": true,
+      "quality": "balanced",
+      "fpsLimit": 60,
+      "color1": "#00f0ff",
+      "color2": "#9d00ff",
+      "accentColor": "#ff0055",
+      "customCode": "",
+      "customUniforms": {},
+      "texturePath": "",
+      "editorMode": "simple",
+      "passes": {
+        "common": "",
+        "bufferA": {
+          "code": "",
+          "inputs": [
+            "none",
+            "none",
+            "none",
+            "none"
+          ]
+        },
+        "bufferB": {
+          "code": "",
+          "inputs": [
+            "none",
+            "none",
+            "none",
+            "none"
+          ]
+        },
+        "bufferC": {
+          "code": "",
+          "inputs": [
+            "none",
+            "none",
+            "none",
+            "none"
+          ]
+        },
+        "bufferD": {
+          "code": "",
+          "inputs": [
+            "none",
+            "none",
+            "none",
+            "none"
+          ]
+        },
+        "image": {
+          "code": "",
+          "inputs": [
+            "none",
+            "none",
+            "none",
+            "none"
+          ]
+        }
+      }
+    }
+  }
+}
