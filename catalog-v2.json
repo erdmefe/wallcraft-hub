@@ -1,0 +1,456 @@
+[
+  {
+    "id": "aurora-boralis-2",
+    "title": "Aurora Boralis 2",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/aurora-boralis-2.webp?t=1790600067313",
+    "shaderFile": "aurora-boralis-2.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "b6323a2490eaa79085f7a2703ce90de8a4f3e3d302e484b68b5665a5794a10a6"
+  },
+  {
+    "id": "hypnosis",
+    "title": "Hypnosis",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/hypnosis.webp?t=1790600067314",
+    "shaderFile": "hypnosis.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "53aa61e907d1efa47b533b457a1fd1b95f72a0026e10cc3606b1f0234c79852e"
+  },
+  {
+    "id": "liquid-mercury",
+    "title": "Liquid Mercury",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/liquid-mercury.webp?t=1790600067315",
+    "shaderFile": "liquid-mercury.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "8d18a9c9e7868773dde081178f0129a359be1117a997e19ad22012c1d843c175"
+  },
+  {
+    "id": "neon-cube",
+    "title": "Neon Cube",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/neon-cube.webp?t=1790600067316",
+    "shaderFile": "neon-cube.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "1766cd0300f1728d2d7482a7c6f5fb9aa1d6073f9b14a09f9a5ec46af9cb068e"
+  },
+  {
+    "id": "retro-sythwave-2",
+    "title": "Retro Sythwave 2",
+    "type": "shader",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "custom",
+    "categoryLabel": "Shader Art",
+    "desc": "Community-crafted dynamic WebGL shader for WallCraft.",
+    "previewGradient": "linear-gradient(135deg, #0f172a 0%, #020617 100%)",
+    "previewImage": "shaders/retro-sythwave-2.webp?t=1790600067317",
+    "shaderFile": "retro-sythwave-2.json",
+    "permissions": [],
+    "tags": [
+      "shader"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "5e84ca8c5a5bf55f4c2aeb39157b145f4871d0e55c4b6f0ac9e13130b72f8ca1"
+  },
+  {
+    "id": "air-quality",
+    "dir": "air-quality",
+    "repoDirName": "air-quality",
+    "type": "widget",
+    "title": "Air Quality",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Outdoor air quality for any city: the live index, what it means, the individual pollutants (PM2.5, PM10, ozone, NO2), the UV index and the pollen count - so you know whether to open the window.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/air-quality/preview.png",
+    "icon": "widgets/air-quality/icon.png",
+    "iconImage": "widgets/air-quality/icon.png",
+    "permissions": [
+      "network"
+    ],
+    "tags": [
+      "widget"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "fileHashes": {
+      "icon.png": "bad0ece048256f1d6057baf6e06e6231e8211c79af81730b90e0fb8b6fd6840f",
+      "manifest.json": "394e724d7bd5145c978a0702bd61f58bc732e9734a569561d221ae46fa4692f4",
+      "preview.png": "677ddf6e97110b30cc81a0fa6e7564fcafd2fee2625b6e7bd51553de9e3a4a5b",
+      "widget.css": "bdb0104d3e71ba133b84c7b5393b10dfca9e1aa1f44b6ffcc35ce07264b32feb",
+      "widget.html": "b4bf81083b0e7811ffd658015204497b08e8ea0fa4bfc883c47d466b108d36d4",
+      "widget.js": "0cc1f4e1a7e6e2e83f7cd71c74ecc049ce50e424b3031e308db4e460ea703ca3"
+    },
+    "integrityFormat": "files-sha256-v1",
+    "sha256": "7c93b29bc5be0600fa0f8927823e8ebfc85817e85cb454b475072d59cc912fcc"
+  },
+  {
+    "id": "markets",
+    "dir": "markets",
+    "repoDirName": "markets",
+    "type": "widget",
+    "title": "Markets",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Live currency and crypto on the desktop: the selected pair's rate, its real period change, a price-history chart, a second pair and a coin with its 24h move.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/markets/preview.png",
+    "icon": "widgets/markets/icon.png",
+    "iconImage": "widgets/markets/icon.png",
+    "permissions": [
+      "network"
+    ],
+    "tags": [
+      "widget"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "fileHashes": {
+      "icon.png": "48dcb9d827387bf89c13537a43cf59bf4661f568fcbf53831974aa47f4f0900e",
+      "manifest.json": "5cccb003d2daa45366887e0f8a4ab1cafdde0bff24f916c26a5d46bd6d130424",
+      "preview.png": "e0629745d7c8f5b171f82348a60351f4c6afd75a4f2557f10ab80cdc21fdd9e4",
+      "widget.css": "44694d72fba16b27e7fc2d52cfebc970f93b8e5044ffc7b775e96f9f49d6a56d",
+      "widget.html": "b0c9576717b348e486d0e2fa8e49446fe6e7fecfb05f0c13ca9cf24626f4acf6",
+      "widget.js": "06e6cedf1a0517aabd72bc4fd06440ebc19ce094b068d27dc4e4e66709dbe3b3"
+    },
+    "integrityFormat": "files-sha256-v1",
+    "sha256": "257aff487656cfac02e9a496900b6b4e99ee1898d8133202cf92b16fc3d48724"
+  },
+  {
+    "id": "sound-level",
+    "dir": "sound-level",
+    "repoDirName": "sound-level",
+    "type": "widget",
+    "title": "Sound Level",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Live sound level meter: shows the real master output level in dBFS with a peak-hold bar, and which applications are producing the sound right now.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/sound-level/preview.png",
+    "icon": "widgets/sound-level/icon.png",
+    "iconImage": "widgets/sound-level/icon.png",
+    "permissions": [
+      "audio"
+    ],
+    "tags": [
+      "widget"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "fileHashes": {
+      "icon.png": "08c859cdc3b51c35fd3b4b9b444da49fba9bea24cdcc484756ab7544514b3714",
+      "manifest.json": "7999a576cd24141036529e32ff179a229019dc9c531e98b2c81f126d5106520f",
+      "preview.png": "8ced406b04ad78a8db7bdba3ab63cbb53a99721e6d6494a6953ec663c38eeb9d",
+      "widget.css": "0eb40f3b65d3362898b57cc559fe6266aead4a4c25537854592eecc1a328cd3c",
+      "widget.html": "95fd4146298c58cce81e2db44c3244d889976b3dfa5bfbd800c60b8da34d6c90",
+      "widget.js": "e085d79f23b986b48603be62a53b51fca7b2ebfcfe9b210ade034b56f41858b7"
+    },
+    "integrityFormat": "files-sha256-v1",
+    "sha256": "07696405ff6d2465eb4a64c0a9dd1b66a04ca08cb820cfe696ea330b2844e06a"
+  },
+  {
+    "id": "storage",
+    "dir": "storage",
+    "repoDirName": "storage",
+    "type": "widget",
+    "title": "Storage",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Storage inventory for the desktop: every volume with its capacity, free space, fullness, and the physical disk behind it (NVMe SSD / SSD / HDD / removable) so you can see which drive is filling up and how fast it is.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/storage/preview.png",
+    "icon": "widgets/storage/icon.png",
+    "iconImage": "widgets/storage/icon.png",
+    "permissions": [
+      "system-stats"
+    ],
+    "tags": [
+      "widget"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "fileHashes": {
+      "icon.png": "26d66e42cb745f34942d3c98f5262c72ee131f33301952f4ce04c76aabac2fc0",
+      "manifest.json": "aca24ed3d0b2e5210e2d96b1851e5682274bc634828c88f10dc675bb82c8a7a1",
+      "preview.png": "6f1309a857424858fb32c7629738888df563f06e50dc29990af720e434aba2e9",
+      "widget.css": "58ae8eee296f4aa8b3b2f3731db3851f3b1e18eaeb9691149ba92351210b6eda",
+      "widget.html": "3d2ea834e1b35c610f9e36fa400875e3bfff5953089e74115e83e688580ef587",
+      "widget.js": "3a9a6750dd4e31aec6d6bf3c295280ecc19e574042ff563a98ec974d88a3b8b3"
+    },
+    "integrityFormat": "files-sha256-v1",
+    "sha256": "9d5fdceb1833a073432a88078e034b6e6a85b48e00b97bb83b30ca60103a2a75"
+  },
+  {
+    "id": "team-hours",
+    "dir": "team-hours",
+    "repoDirName": "team-hours",
+    "type": "widget",
+    "title": "Team Hours",
+    "author": "Bunny",
+    "version": "1.0.0",
+    "category": "productivity",
+    "categoryLabel": "Productivity",
+    "desc": "Team times: displays the local times of the selected cities and highlights the window where everyone's working hours overlap.",
+    "previewGradient": "radial-gradient(ellipse at 50% 25%, rgba(56, 189, 248, 0.12) 0%, rgba(12, 18, 30, 0.8) 55%, #07080e 100%)",
+    "previewImage": "widgets/team-hours/preview.png",
+    "icon": "widgets/team-hours/icon.png",
+    "iconImage": "widgets/team-hours/icon.png",
+    "permissions": [],
+    "tags": [
+      "widget"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "fileHashes": {
+      "icon.png": "f3c73afd79f5a21340a322dd1e8f8a1a23d67b09a0fd8307b7d44205d524b3c1",
+      "manifest.json": "52c77f94873319082485aaf7652962be0313d11dd0e68a3a68412b2a1be7f90c",
+      "preview.png": "6372a18d0afd9fd965c543c2913f1f3400d64db2ac4ca168d4a4c458d3f66321",
+      "widget.css": "9db57c7a0d9ba96f668a1ed5dae0341ff9d319a8ae696ac10f0ec75a86a4cdbe",
+      "widget.html": "b9377f31c200f1667b2c745f9eb2b27bce6710c314f8a3cc31c86226963acc9d",
+      "widget.js": "cbafef75fc80b0bdbc00deee83c71c34144c56a0101182b28b7f9427381ad620"
+    },
+    "integrityFormat": "files-sha256-v1",
+    "sha256": "024490885478a03308992f3f64af5574ba9c6659d562c7df06a6b9f122806ed8"
+  },
+  {
+    "id": "preset-custom-1790683542333-a7k9o",
+    "type": "preset",
+    "title": "WC-Demo1 Preset",
+    "name": "WC-Demo1 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Minimalist neon layout featuring clock, weather, and media widgets on Neon Atlas shader.",
+    "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+    "previewImage": "presets/wc-demo1-preset.webp",
+    "accentColor": "#00f0ff",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "media"
+    ],
+    "widgetWrapperStyle": "squircle-acrylic",
+    "wallpaperType": "shader",
+    "shaderPreset": "neon-atlas",
+    "presetFile": "wc-demo1-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "97976ce7ab5a8f9e007de3db9e64caf524033b0413580ffa676c5fcf6d3bbfa2"
+  },
+  {
+    "id": "preset-custom-1790683547576-arl3t",
+    "type": "preset",
+    "title": "WC-Demo2 Preset",
+    "name": "WC-Demo2 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Cyberpunk desktop dashboard with system monitor, audio visualizer, quote, and weather widgets.",
+    "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+    "previewImage": "presets/wc-demo2-preset.webp",
+    "accentColor": "#ff0055",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "quote",
+      "system-monitor",
+      "media",
+      "audio-visualizer"
+    ],
+    "widgetWrapperStyle": "cyber-obsidian",
+    "wallpaperType": "shader",
+    "shaderPreset": "quantum-waves",
+    "presetFile": "wc-demo2-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "5cf8d6f9d751e67cc90e8aaa6a12dd1c95a77a01a27b2dfa800aa9dd26048597"
+  },
+  {
+    "id": "preset-custom-1790683550116-x1qgu",
+    "type": "preset",
+    "title": "WC-Demo3 Preset",
+    "name": "WC-Demo3 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Cozy ember-glow setup with zen focus, volume mixer, app rack, and audio visualizer.",
+    "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+    "previewImage": "presets/wc-demo3-preset.webp",
+    "accentColor": "#facc15",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "media",
+      "audio-visualizer",
+      "zen-focus",
+      "app-rack",
+      "volume-mixer"
+    ],
+    "widgetWrapperStyle": "none",
+    "wallpaperType": "shader",
+    "shaderPreset": "fire-ember-glow",
+    "presetFile": "wc-demo3-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "a8e0ecba4096496c7e12e575ff0a33fdee296c3e043060bab603b2213aaaa566"
+  },
+  {
+    "id": "preset-custom-1790683554404-u0ga7",
+    "type": "preset",
+    "title": "WC-Demo4 Preset",
+    "name": "WC-Demo4 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Deep space cosmic nebula theme with battery hub, network monitor, and media player.",
+    "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+    "previewImage": "presets/wc-demo4-preset.webp",
+    "accentColor": "#ff0080",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "media",
+      "network-monitor",
+      "battery-hub"
+    ],
+    "widgetWrapperStyle": "midnight-cathedral",
+    "wallpaperType": "shader",
+    "shaderPreset": "cosmic-nebula",
+    "presetFile": "wc-demo4-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "57428357a2b2162eb2098077e47e490eab99ff4a9b6e58fa3f90316c2c9bedc3"
+  },
+  {
+    "id": "preset-custom-1790683558901-56thh",
+    "type": "preset",
+    "title": "WC-Demo5 Preset",
+    "name": "WC-Demo5 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Clean productivity setup with quick notes, mini calendar, calculator, and app rack.",
+    "previewGradient": "linear-gradient(135deg, #3e3e8e 0%, #5d5d69 100%)",
+    "previewImage": "presets/wc-demo5-preset.webp",
+    "accentColor": "#06b6d4",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "system-monitor",
+      "quick-notes",
+      "mini-calendar",
+      "app-rack",
+      "calculator"
+    ],
+    "widgetWrapperStyle": "glacial-pearl",
+    "wallpaperType": "gradient",
+    "shaderPreset": null,
+    "presetFile": "wc-demo5-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "986e89439f82df2aaaec49629d932a50bb832fe038cf90d7d2fe1c8627a20c19"
+  },
+  {
+    "id": "preset-custom-1790683565204-iq74z",
+    "type": "preset",
+    "title": "WC-Demo6 Preset",
+    "name": "WC-Demo6 Preset",
+    "author": "WallCraft User",
+    "version": "1.0.0",
+    "category": "aesthetic",
+    "categoryLabel": "Desktop Preset",
+    "desc": "Advanced financial suite with live markets, team hours, and Aurora Borealis shader.",
+    "previewGradient": "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%)",
+    "previewImage": "presets/wc-demo6-preset.webp",
+    "accentColor": "#00a5c2",
+    "activeWidgets": [
+      "clock",
+      "weather",
+      "media",
+      "audio-visualizer",
+      "markets",
+      "team-hours"
+    ],
+    "widgetWrapperStyle": "squircle-acrylic",
+    "wallpaperType": "shader",
+    "shaderPreset": "custom",
+    "presetFile": "wc-demo6-preset.wallcraft-preset.json",
+    "permissions": [],
+    "tags": [
+      "preset",
+      "theme"
+    ],
+    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "sha256": "65650e934099ecef9bcde8c15259dcb756587ec74a3028dd163d0027919b2757"
+  }
+]
