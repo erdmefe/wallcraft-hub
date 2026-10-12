@@ -15,8 +15,8 @@
     "tags": [
       "shader"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "b6323a2490eaa79085f7a2703ce90de8a4f3e3d302e484b68b5665a5794a10a6"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "dce9fa866a93dcc837670b48eba2c343a9d1df75f636f679b45480eda99678f3"
   },
   {
     "id": "hypnosis",
@@ -34,8 +34,8 @@
     "tags": [
       "shader"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "53aa61e907d1efa47b533b457a1fd1b95f72a0026e10cc3606b1f0234c79852e"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "79b0fcb9ebcc3f67877d23eeacecee2d2697f28d0d0c764de96be3a5138b9670"
   },
   {
     "id": "liquid-mercury",
@@ -53,8 +53,8 @@
     "tags": [
       "shader"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "8d18a9c9e7868773dde081178f0129a359be1117a997e19ad22012c1d843c175"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "f2897e6f79abbf5af0cb9c6d97006591e84a7868c8311d88958932fbf3266b44"
   },
   {
     "id": "neon-cube",
@@ -72,8 +72,8 @@
     "tags": [
       "shader"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "1766cd0300f1728d2d7482a7c6f5fb9aa1d6073f9b14a09f9a5ec46af9cb068e"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "4b32d223aad686f4feb9b036a4819ddf6ffcedfb75bb43f2a8473df44e25a5d8"
   },
   {
     "id": "retro-sythwave-2",
@@ -91,8 +91,8 @@
     "tags": [
       "shader"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "5e84ca8c5a5bf55f4c2aeb39157b145f4871d0e55c4b6f0ac9e13130b72f8ca1"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "abebb616538682f53eb4fd370773eeed4be290ea8ef682a61521b2cb5ab66634"
   },
   {
     "id": "air-quality",
@@ -115,17 +115,17 @@
     "tags": [
       "widget"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
     "fileHashes": {
       "icon.png": "bad0ece048256f1d6057baf6e06e6231e8211c79af81730b90e0fb8b6fd6840f",
-      "manifest.json": "394e724d7bd5145c978a0702bd61f58bc732e9734a569561d221ae46fa4692f4",
+      "manifest.json": "f59796cd68dc95644c1fcc3f89269a24a4a7dfc9bc9cd2cc025ed13407d513c3",
       "preview.png": "677ddf6e97110b30cc81a0fa6e7564fcafd2fee2625b6e7bd51553de9e3a4a5b",
-      "widget.css": "bdb0104d3e71ba133b84c7b5393b10dfca9e1aa1f44b6ffcc35ce07264b32feb",
-      "widget.html": "b4bf81083b0e7811ffd658015204497b08e8ea0fa4bfc883c47d466b108d36d4",
-      "widget.js": "0cc1f4e1a7e6e2e83f7cd71c74ecc049ce50e424b3031e308db4e460ea703ca3"
+      "widget.css": "330f4c3dc48dd1780d91e250d31696da691959fe0a182a5fe91d3faaba7b93bf",
+      "widget.html": "3fb2a77eea7c90ccafd4cba1f2b9ec45ffd185a6cb30de0110c3d51dc607d0c5",
+      "widget.js": "7011db5e82743148e521afbd58917d896f8c26783aec16a7876c80b5440eaaae"
     },
     "integrityFormat": "files-sha256-v1",
-    "sha256": "7c93b29bc5be0600fa0f8927823e8ebfc85817e85cb454b475072d59cc912fcc"
+    "sha256": "d13db66445f51c765690e260ead0f0215d2b2012da8591cdc21f741f98f7e37a"
   },
   {
     "id": "markets",
@@ -148,17 +148,17 @@
     "tags": [
       "widget"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
     "fileHashes": {
       "icon.png": "48dcb9d827387bf89c13537a43cf59bf4661f568fcbf53831974aa47f4f0900e",
-      "manifest.json": "5cccb003d2daa45366887e0f8a4ab1cafdde0bff24f916c26a5d46bd6d130424",
+      "manifest.json": "4b9edb50998b98f806244c8de0d496ce265a7203000c672edc0029ead5d600d8",
       "preview.png": "e0629745d7c8f5b171f82348a60351f4c6afd75a4f2557f10ab80cdc21fdd9e4",
-      "widget.css": "44694d72fba16b27e7fc2d52cfebc970f93b8e5044ffc7b775e96f9f49d6a56d",
-      "widget.html": "b0c9576717b348e486d0e2fa8e49446fe6e7fecfb05f0c13ca9cf24626f4acf6",
-      "widget.js": "06e6cedf1a0517aabd72bc4fd06440ebc19ce094b068d27dc4e4e66709dbe3b3"
+      "widget.css": "6835595a3703f012165db1d1760349da77780b8fb7453c617e7a191886a12466",
+      "widget.html": "b39869e357853329aea736d820ed1899bb4114d2ef2936e4e0ea0467b17e114c",
+      "widget.js": "77063a9657a8566aca941d0c23e092038bc9d4435addd9a049dfc7597e15b555"
     },
     "integrityFormat": "files-sha256-v1",
-    "sha256": "257aff487656cfac02e9a496900b6b4e99ee1898d8133202cf92b16fc3d48724"
+    "sha256": "975417f51457f72e2e73d84287fec07e14e0915d42c8f4520f1d895d5cdcb12e"
   },
   {
     "id": "sound-level",
@@ -181,17 +181,17 @@
     "tags": [
       "widget"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
     "fileHashes": {
       "icon.png": "08c859cdc3b51c35fd3b4b9b444da49fba9bea24cdcc484756ab7544514b3714",
-      "manifest.json": "7999a576cd24141036529e32ff179a229019dc9c531e98b2c81f126d5106520f",
+      "manifest.json": "5d38c5c2c9fbd559e470e5d8987446bd405a3040dd905e2330ac885cce998bb7",
       "preview.png": "8ced406b04ad78a8db7bdba3ab63cbb53a99721e6d6494a6953ec663c38eeb9d",
-      "widget.css": "0eb40f3b65d3362898b57cc559fe6266aead4a4c25537854592eecc1a328cd3c",
-      "widget.html": "95fd4146298c58cce81e2db44c3244d889976b3dfa5bfbd800c60b8da34d6c90",
-      "widget.js": "e085d79f23b986b48603be62a53b51fca7b2ebfcfe9b210ade034b56f41858b7"
+      "widget.css": "33ad4390fd0234ba8345f09a9ea5638ebe4d06d0a4038be6dc32010f493dada4",
+      "widget.html": "89749e3d77f7b84322dbb119cd0ced8c06abc4394809a15bb55fc2a72d4d08ba",
+      "widget.js": "2f08f50aa3b713f0e30ef7e55fcd84c43691b232a2228924d60598bf16cb09fe"
     },
     "integrityFormat": "files-sha256-v1",
-    "sha256": "07696405ff6d2465eb4a64c0a9dd1b66a04ca08cb820cfe696ea330b2844e06a"
+    "sha256": "8250bf1eb540021cc3f426aeafe385767f314013113c5fd75c9c7813a1508055"
   },
   {
     "id": "storage",
@@ -214,17 +214,17 @@
     "tags": [
       "widget"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
     "fileHashes": {
       "icon.png": "26d66e42cb745f34942d3c98f5262c72ee131f33301952f4ce04c76aabac2fc0",
-      "manifest.json": "aca24ed3d0b2e5210e2d96b1851e5682274bc634828c88f10dc675bb82c8a7a1",
+      "manifest.json": "ce8f495913025eecc5343a26da85ea54ace9dd273c74349e158f1dea2109a1c4",
       "preview.png": "6f1309a857424858fb32c7629738888df563f06e50dc29990af720e434aba2e9",
-      "widget.css": "58ae8eee296f4aa8b3b2f3731db3851f3b1e18eaeb9691149ba92351210b6eda",
-      "widget.html": "3d2ea834e1b35c610f9e36fa400875e3bfff5953089e74115e83e688580ef587",
-      "widget.js": "3a9a6750dd4e31aec6d6bf3c295280ecc19e574042ff563a98ec974d88a3b8b3"
+      "widget.css": "bb1f613f400c363bfb120011acdfc5159dd98e9bc803680018aff11e8f199910",
+      "widget.html": "7fee22709a01fc2907a76884b265d5a23d095bdcd43292e21621eae85855df0a",
+      "widget.js": "40b3d331ab56f3a2f2019f74a6a8dadca990a77785831ac597147451c5c30da7"
     },
     "integrityFormat": "files-sha256-v1",
-    "sha256": "9d5fdceb1833a073432a88078e034b6e6a85b48e00b97bb83b30ca60103a2a75"
+    "sha256": "73f95bd677e5b6f4b71fee4e2f3f367f4cce5d789f690ba4682ac966f68cc0b4"
   },
   {
     "id": "team-hours",
@@ -245,17 +245,17 @@
     "tags": [
       "widget"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
     "fileHashes": {
       "icon.png": "f3c73afd79f5a21340a322dd1e8f8a1a23d67b09a0fd8307b7d44205d524b3c1",
-      "manifest.json": "52c77f94873319082485aaf7652962be0313d11dd0e68a3a68412b2a1be7f90c",
+      "manifest.json": "7581203a36764a5f0635967597a4d907d502ce0ca95d148f7afa82d802eab795",
       "preview.png": "6372a18d0afd9fd965c543c2913f1f3400d64db2ac4ca168d4a4c458d3f66321",
       "widget.css": "9db57c7a0d9ba96f668a1ed5dae0341ff9d319a8ae696ac10f0ec75a86a4cdbe",
-      "widget.html": "b9377f31c200f1667b2c745f9eb2b27bce6710c314f8a3cc31c86226963acc9d",
-      "widget.js": "cbafef75fc80b0bdbc00deee83c71c34144c56a0101182b28b7f9427381ad620"
+      "widget.html": "51dbe33c952e011462571178f909a1baccc56222a57f28e63ff2a1586c4fcd15",
+      "widget.js": "572166a02555935f87b3eb4c9fc8092674f596f7f09d01111b578d1002b348b7"
     },
     "integrityFormat": "files-sha256-v1",
-    "sha256": "024490885478a03308992f3f64af5574ba9c6659d562c7df06a6b9f122806ed8"
+    "sha256": "5d1a034a2c4b6c1f210e2c5747f51a8a044fd350d1ab9d4a21b10cba5fa49cb0"
   },
   {
     "id": "preset-custom-1790683542333-a7k9o",
@@ -284,8 +284,8 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "97976ce7ab5a8f9e007de3db9e64caf524033b0413580ffa676c5fcf6d3bbfa2"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "6ec00c42100cab897c98b9dc772ffcb75597599a079f5d37cc8e735b57edb6b7"
   },
   {
     "id": "preset-custom-1790683547576-arl3t",
@@ -317,8 +317,8 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "5cf8d6f9d751e67cc90e8aaa6a12dd1c95a77a01a27b2dfa800aa9dd26048597"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "7a068352389f6428773cddc1737c6b7e7fd45eb69d765bab07be5b189dc53f59"
   },
   {
     "id": "preset-custom-1790683550116-x1qgu",
@@ -351,8 +351,8 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "a8e0ecba4096496c7e12e575ff0a33fdee296c3e043060bab603b2213aaaa566"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "f32c7051bf3573c1644a41a07699c069e1b1953a10118842ca6f1fc5bab70b68"
   },
   {
     "id": "preset-custom-1790683554404-u0ga7",
@@ -383,8 +383,8 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "57428357a2b2162eb2098077e47e490eab99ff4a9b6e58fa3f90316c2c9bedc3"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "d00359419249f93e02b04883fd37a59069947343f355bc01da0ed0621cb82f49"
   },
   {
     "id": "preset-custom-1790683558901-56thh",
@@ -417,8 +417,8 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "986e89439f82df2aaaec49629d932a50bb832fe038cf90d7d2fe1c8627a20c19"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "e748e5a63ebae71074e3f3f1c8bfab55ad89468d21cc7be96ee04ef8eeca13ce"
   },
   {
     "id": "preset-custom-1790683565204-iq74z",
@@ -450,7 +450,7 @@
       "preset",
       "theme"
     ],
-    "repoCommit": "c846d956cfcd0c3ca6b8a5436d6a5e407c21607f",
-    "sha256": "65650e934099ecef9bcde8c15259dcb756587ec74a3028dd163d0027919b2757"
+    "repoCommit": "df1b966c78136ab91c17e4e95a92659f7f29fdd6",
+    "sha256": "af63b1b7d8c189fbf103bbd4eefc412a02e5900ed9bc1940b7ff4444f15b4680"
   }
 ]
