@@ -1,174 +1,96 @@
 # WallCraft Community Hub
 
-The official community catalog and distribution hub for [WallCraft](https://github.com/erdmefe/wallcraft) — providing verified 3D WebGL shaders, sandboxed desktop widgets, and workspace presets for the in-app Marketplace.
+The community catalog for [WallCraft](https://github.com/erdmefe/wallcraft): WebGL shaders, sandboxed desktop widgets and desktop presets. See the [developer documentation](https://getwallcraft.com/docs/) for SDK details.
 
----
+## Repository structure and delivery
 
-## Architecture & Distribution
-
-WallCraft Hub operates as a zero-touch public catalog. Desktop clients consume the catalog through a single-shot request cached on edge networks, eliminating N+1 API overhead.
-
-- **Static Catalog Delivery:** `catalog.json` is served directly via jsDelivr Anycast CDN and GitHub Raw.
-- **Edge Telemetry:** Real-time download counters and stars are synchronized asynchronously via a Cloudflare Workers microservice (`wallcraft-metrics`), backed by an in-memory TTL cache and local persistent store fallback.
-- **Integrity Verification:** Package payloads support optional cryptographic SHA-256 integrity verification.
-- **Client Fallback:** If the network is unavailable, clients gracefully fall back to locally cached catalog manifests without blocking startup.
-
----
-
-## Repository Structure
-
-```
+```text
 wallcraft-hub/
-├── catalog.json              # Master compiled catalog consumed by desktop clients
-├── shaders/                  # 3D WebGL GLSL fragment shader scene definitions (.json)
-├── widgets/                  # Sandboxed community widgets (unpacked folder per widget)
-│   └── <widget-id>/
-│       ├── manifest.json     # Widget metadata, grid spans, and config schema
-│       ├── widget.html       # Markup structure
-│       ├── widget.css        # Scoped stylesheet
-│       ├── widget.js         # Lifecycle logic (init, update, destroy)
-│       └── preview.webp      # 16:9 vitrine preview image (or .png)
-├── presets/                  # Full desktop layout & theme presets (.wallcraft-preset.json)
-├── scripts/                  # Catalog compilation and asset tooling
-└── .github/
-    └── workflows/
-        └── build-catalog.yml # Automated CI to compile and validate catalog.json
+├── catalog-v2.json              # Generated catalog consumed by the desktop app
+├── shaders/
+│   └── <publication-id>.json
+├── widgets/
+│   └── <publication-id>/
+│       ├── manifest.json
+│       ├── widget.html
+│       ├── widget.css
+│       ├── widget.js
+│       └── preview.webp         # Optional preview; other supported formats also work
+└── presets/
+    └── <publication-id>.wallcraft-preset.json
 ```
 
----
+The app reads `catalog-v2.json` from GitHub Raw. Published catalog entries pin package sources to a Git commit and include SHA-256 integrity metadata. Download/star metrics use the separate Cloudflare service at `metrics.getwallcraft.com`. Catalog compilation is a maintainer publishing step, not an automatic workflow in this repository.
 
-## Submission Guidelines
+## Names, IDs and updates
 
-Submissions are reviewed and integrated via GitHub Pull Requests.
+- Display names may repeat, including between widgets, shaders and presets. Names are not installation or deletion keys.
+- Catalog IDs must be unique across all item types, ignoring case. Widget pack child IDs must also be unique and must not collide with catalog items or built-in widget IDs.
+- The submission modal generates a publication ID independently of the title. Select the same **saved local source** for later updates to keep its publication ID. Changing the title does not change that mapping.
+- Save an unsaved shader or preset locally before its first submission if you plan to update it. Unsaved draft IDs last only while the submission modal remains open. Keep your publication ID when moving a previously published project to another machine; a fresh local source does not inherit that mapping automatically.
+- Existing published IDs remain valid. Do not rename existing IDs or generate replacement IDs merely to change a display name.
+- Widget `manifest.id` and any shader/preset payload ID must match the catalog ID. Preserve those IDs and the exported asset paths when submitting manually.
 
-### 1. 3D WebGL Shaders (`shaders/`)
+## Submitting an item
 
-Shaders are WebGL 2.0 fragment programs rendered directly on the GPU behind desktop icons.
+Submissions are reviewed through GitHub Pull Requests. Items downloaded from the Hub cannot be re-published through the app.
 
-1. Open **WallCraft -> Settings -> Background -> Custom Shader IDE**.
-2. Write and preview your shader in the integrated editor.
-3. Click **Export (.json)** to generate a validated scene JSON.
-4. Place the exported file into `shaders/<shader-id>.json`.
-5. Add a 16:9 preview image: `shaders/<shader-id>.webp` (or `.png`).
-6. Submit a Pull Request.
+1. Create and test your own shader, widget or preset locally. Save the source before publication if you will send updates.
+2. Open the in-app **Submit to Hub** modal and select that saved local source. Enter the title, author, version, description and optional preview.
+3. Use **Export Package in this modal** to obtain the publication package. Ordinary local exports may retain the local source identity instead.
+4. Use **Submit PR to Hub** with a classic GitHub Personal Access Token with `public_repo` scope, or follow the manual steps below. Never commit the token.
 
-**Shader Requirements:**
-- Must compile cleanly with WebGL 2.0 / GLSL 3.00 ES.
-- Core Shadertoy-compatible uniforms (`iResolution`, `iTime`, `iTimeDelta`, `iFrame`, `iMouse`, `iChannel0..3`) are provided automatically.
-- Audio reactivity is available via `iAudioSpectrum[32]` and `iAudioWaveform[32]`.
-- Multi-pass pipelines support `Common`, `Buffer A` through `Buffer D`, and `Image` passes with ping-pong FBO feedback.
+### Manual submission
 
----
+Install Git and GitHub CLI, run `gh auth login`, fork this repository and clone your fork. Run the modal's Git commands from that checkout, using the package exported from the same modal:
 
-### 2. Desktop Widgets (`widgets/`)
+| Item | Export format | Repository destination |
+| --- | --- | --- |
+| Shader | `.json` | `shaders/<publication-id>.json` |
+| Widget | `.zip` | Extract ZIP contents into `widgets/<publication-id>/` |
+| Preset | `.wallcraft-preset.json` | `presets/<publication-id>.wallcraft-preset.json` |
 
-Widgets are modular web components executed within strict HTML5 iframe sandboxes: `<iframe sandbox="allow-scripts">` with an opaque (`null`) origin. Widgets have zero access to Node.js, Electron host internals, or the local filesystem. All host communication occurs over an asynchronous `postMessage` RPC bridge.
+Only widget ZIPs contain a root `manifest.json`. Do not add an extra folder around the extracted contents. The submission JSON containing `widgetFiles` is an envelope, not a widget manifest: use the exported ZIP. A later update uses the same publication ID and repository paths with a new version.
 
-1. Create a dedicated folder under `widgets/<widget-id>/`.
-2. Provide the four required files:
-   - `manifest.json`: Configuration schema, 24×24 grid dimensions, and permission declarations.
-   - `widget.html`: Interface markup.
-   - `widget.css`: Theme-compatible styling.
-   - `widget.js`: Widget lifecycle logic (`window.WallCraft.onUpdate`, `onDestroy`).
-3. Add a 16:9 preview image (`preview.webp` or `preview.png`).
-4. Test locally (see [Local Testing](#local-testing)).
-5. Submit a Pull Request.
+### Widget lifecycle and `instanceName`
 
-#### Manifest Specification (`manifest.json`)
-
-```json
-{
-  "id": "my-custom-widget",
-  "name": "My Custom Widget",
-  "version": "1.0.0",
-  "author": "YourName",
-  "description": "Clean desktop widget for WallCraft",
-  "gridSpan": {
-    "cols": 4,
-    "rows": 4,
-    "minCols": 2,
-    "minRows": 2
-  },
-  "permissions": ["system-stats"],
-  "entry": {
-    "html": "widget.html",
-    "css": "widget.css",
-    "script": "widget.js"
-  },
-  "configSchema": [
-    {
-      "key": "refreshInterval",
-      "label": "Refresh Interval (seconds)",
-      "type": "range",
-      "min": 1,
-      "max": 60,
-      "step": 1,
-      "default": 5
-    }
-  ]
-}
-```
-
-#### Supported Permissions
-Widgets requiring host capabilities must explicitly declare them in the `permissions` array:
-- `"system-stats"`: Hardware telemetry (CPU, RAM, GPU, storage, network traffic).
-- `"media"`: Windows SMTC playback state, track metadata, and playback controls.
-- `"audio"`: Windows WASAPI audio session levels, master volume, and peak meters.
-- `"discord"`: Discord Voice Gateway RPC state and active speaker status.
-- `"launcher"`: Safe application shortcut and URL launching.
-
-#### JavaScript Lifecycle (`widget.js`)
-Widgets interact with the host through the injected `window.WallCraft` (or `window.wallcraft`) SDK:
+Widgets run in an iframe with `sandbox="allow-scripts"`. The injected `window.WallCraft` SDK exposes permitted host capabilities; it is separate from your widget lifecycle object. A minimal lifecycle object can use the ID-independent `window.WallCraftWidget` convention:
 
 ```javascript
-window.WallCraft = window.WallCraft || {};
-
-// Called when user settings change in the WallCraft control panel
-if (window.WallCraft.onUpdate) {
-  window.WallCraft.onUpdate((config) => {
-    // Apply dynamic configuration changes
-  });
-}
-
-// Clean up all timers, intervals, and listeners to prevent memory leaks
-window.addEventListener('beforeunload', () => {
-  if (typeof window.onDestroy === 'function') {
-    window.onDestroy();
-  }
-});
+window.WallCraftWidget = {
+  init(container, config) { this.container = container; this.update(config); },
+  update(config) { this.container.textContent = config?.message || 'Hello WallCraft'; },
+  pause() {},
+  resume() {},
+  destroy() { this.container = null; }
+};
 ```
 
----
+For an existing object such as `window.MyClockWidget`, the manifest can set `"instanceName": "MyClockWidget"`. It is read as a literal window property, not a nested object path. Without it, the loader derives a name from the final dot-separated ID segment (e.g. `my-clock` becomes `MyClockWidget`), with `window.WallCraftWidget` also accepted. Creator Studio preserves the original instance name when assigning a publication ID. Keep the exported `instanceName` so changing the package ID does not break initialization.
 
-### 3. Desktop Presets (`presets/`)
+Declare the capabilities you use in `permissions`: `system-stats`, `media`, `audio`, `discord`, `launcher`, or `network`. Declaration does not grant access; the user must approve it. Handle denied calls, stop loops in `pause()`, restart them in `resume()`, and release timers, listeners and subscriptions in `destroy()`. See the [manifest and lifecycle reference](https://getwallcraft.com/docs/#manifest-spec) for the complete contract.
 
-Presets bundle active wallpaper shaders, video/image backgrounds, active widgets, 24×24 grid coordinates, and wrapper themes into a single shareable file.
+### Preset dependencies
 
-1. Configure your layout in WallCraft.
-2. Navigate to **Settings -> Profiles & Presets**.
-3. Click **Export Preset** to download your `<preset-id>.wallcraft-preset.json`.
-4. Place the file in `presets/` and open a Pull Request.
+Presets contain layout, settings and references, not embedded widget packages. Publish custom widgets and shaders first, then export the preset from the submission modal so known publication IDs replace local references. Built-in and already installed community item IDs remain unchanged. A reference to an unpublished local widget is not a distributable dependency.
 
----
+## Local testing
 
-## Local Testing
+- **Widgets:** Import the exact ZIP through **Settings → Modules & Widgets → Import Package** and verify rendering, settings, pause/resume and cleanup.
+- **Shaders:** Import the scene JSON through the app's custom shader controls and preview its rendering.
+- **Presets:** Use **Profiles & Presets → Import Preset**, with its referenced custom widgets/shaders available.
 
-Test your creation locally before submitting:
+Follow the [packaging limits](https://getwallcraft.com/docs/#packaging); exclude caches, `node_modules` and build tools from widget packages.
 
-- **Widgets:** Copy your widget folder into `%APPDATA%\WallCraft\user-widgets\<widget-id>\`. Restart WallCraft or re-open the marketplace to test installation, rendering, and interaction.
-- **Shaders:** Place your exported `.json` file in `%APPDATA%\WallCraft\shaders\<shader-id>.json`. It will be immediately available in the 3D Shader selector.
-- **Presets:** Open WallCraft **Settings -> Profiles & Presets -> Import Preset** and select your `.wallcraft-preset.json` file.
+## Maintainer publishing
 
----
+The local `Wallcraft Marketplace` tooling lives beside this checkout, not under this repository's `scripts/` directory. Its `build-hub-catalog.js` uses the application's `scripts/community/prepare-catalog.js` validator.
 
-## Security & Quality Standards
+1. Review source changes and retain existing publication IDs. Commit sources before generating commit-pinned hashes.
+2. From the tooling directory, run `publish-catalog.bat --check` on a clean Hub checkout to validate without writing, pushing or updating D1.
+3. Run the normal `publish-catalog.bat` only when ready to publish. It synchronizes the checkout, optionally generates previews, commits source assets, builds `catalog-v2.json`, pushes GitHub changes and applies the generated D1 allowlist SQL. Existing counters are preserved. The normal mode has remote side effects; `--check` does not.
 
-- **Isolated Execution:** Widgets run in an opaque sandbox origin. Direct access to `require`, `process`, or parent windows is strictly blocked.
-- **Lifecycle Cleanliness:** All `setInterval`, `requestAnimationFrame`, and DOM event listeners must be properly cleared on unload. Leaking background resources will result in PR rejection.
-- **Theme Compatibility:** Widgets should adapt gracefully to WallCraft's 17 wrapper themes by relying on CSS custom properties or transparent containers when zero-wrapper styling is active.
-- **Grid Discipline:** Content must fit predictably within the declared 24×24 magnetic grid boundaries.
-
----
+Do not hand-edit hashes or `repoCommit`, restore the obsolete `catalog.json`, or assume merging a source PR alone regenerates the catalog. Source files are hashed as Git blob bytes to avoid Windows line-ending differences. If publishing fails after the GitHub push, resolve and complete the D1 step as well.
 
 ## License
 
